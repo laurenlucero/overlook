@@ -11,3 +11,14 @@ import './css/base.scss';
 import './images/orange.png'
 
 console.log('This is the JavaScript entry file - your code begins here.');
+
+// event listenters
+
+// fetch data
+
+// post data
+
+// delete data
+
+
+// display
