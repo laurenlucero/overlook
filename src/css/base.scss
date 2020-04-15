@@ -1,6 +1,17 @@
 /* This is an example of using Sass, otherwise plain CSS works too*/
+@import url ("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Rosario&display=swap")
+
 $primary-background: pink;
 
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  background-color: $primary-background;
+  background-color: $primary-background
+  font-family: 'Rosario', sans-serif;
 }
