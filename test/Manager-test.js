@@ -1,8 +1,19 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-describe('See if the tests are running', function() {
-  it('should return true', function() {
-    expect(true).to.equal(true);
+import sampleData from "./sample-test-data";
+import Manager from "../src/Manager";
+
+describe('Manager', function() {
+
+  let manager;
+
+  beforeEach(function() {
+    manager = new Manager(1, "Lauren Lucero");
+  });
+
+  it('should be an instance of Manager', function() {
+    expect(manager).to.be.an.instanceOf(Manager);
+
   });
 });

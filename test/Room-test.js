@@ -1,8 +1,19 @@
 import chai from 'chai';
 const expect = chai.expect;
 
-describe('See if the tests are running', function() {
-  it('should return true', function() {
-    expect(true).to.equal(true);
+import sampleData from "./sample-test-data";
+import Room from "../src/Room";
+
+describe('Room', function() {
+
+  let room;
+
+  beforeEach(function() {
+    room = new Room(1, "residential suite", true, "queen", 1, 358.4);
   });
+
+  it('should be an instance of Room', function() {
+    expect(room).to.be.an.instanceOf(Room);
+  });
+
 });

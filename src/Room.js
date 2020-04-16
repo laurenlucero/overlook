@@ -1,5 +1,5 @@
 class Room {
-  constructor() {
+  constructor(number, roomType, bidet, bedSize, numBeds, costPerNight) {
     this.number = number;
     this.roomType = roomType;
     this.bidet = true || false;

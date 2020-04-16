@@ -1,7 +1,10 @@
+import Guest from '../src/Guest';
+
 class Manager extends Guest {
   constructor(id, name) {
     super(id, name);
-
+    this.id = id;
+    this.name = name;
   }
 
   viewBooking(user) {
