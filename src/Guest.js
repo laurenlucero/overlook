@@ -9,20 +9,21 @@ class Guest {
     return firstName[0];
   }
 
-  selectDate() {
+  bookRoomByDate() {
+    // select a room for booking
     // select a date to book a room
   }
 
-  checkAvailableRooms() {
-    // show list of room details for rooms available on selected date
+  findBookings() {
+    // find any bookings past/present or upcoming
+  }
+
+  getTotalSpending() {
+    // get total amount spent on rooms
   }
 
   filterAvailableRooms() {
     // filter list of available rooms by roomType property
-  }
-
-  bookRoom() {
-    // select a room for booking
   }
 }
 

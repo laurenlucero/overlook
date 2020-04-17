@@ -8,7 +8,7 @@ class Manager extends Guest {
     this.hotelInfo = hotelInfo;
   }
 
-  viewBooking(user) {
+  viewBookingsByGuest() {
     // search a user by name to view bookings and total amount spent
   }
 

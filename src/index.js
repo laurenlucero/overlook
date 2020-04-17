@@ -56,13 +56,16 @@ Promise.all([getUsers, getRooms, getBookings])
 
 // Login
 const loginForm = document.getElementById("login-form");
-const loginButton = document.getElementById("login-form-submit");
+// const loginButton = document.getElementById("login-form-submit");
 const loginErrorMsg = document.getElementById("login-error-msg");
 
-loginButton.addEventListener("click", e => {
+$("#login-form");
+$("#login-error-message");
+
+$("#login-form-submit").on("click", e => {
   e.preventDefault();
-  const username = loginForm.username.value;
-  const password = loginForm.password.value;
+  let username = loginForm.username.value;
+  let password = loginForm.password.value;
 
   if (username === "manager" && password === "overlook2020") {
     alert("You have successfully logged in.");
@@ -72,4 +75,18 @@ loginButton.addEventListener("click", e => {
   }
 });
 
-// username: customer50 (where 50 is the ID of the user)
+
+// loginButton.addEventListener("click", e => {
+  //   e.preventDefault();
+  //   let username = loginForm.username.value;
+  //   let password = loginForm.password.value;
+  //
+  //   if (username === "manager" && password === "overlook2020") {
+    //     alert("You have successfully logged in.");
+    //     location.reload();
+    //   } else {
+      //     loginErrorMsg.style.opacity = 1;
+      //   }
+      // });
+
+      // username: customer50 (where 50 is the ID of the user)

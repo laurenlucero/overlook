@@ -20,7 +20,6 @@ describe("Manager", function() {
   });
 
   it("should have a name", function() {
-    expect(manager.name).to.equal("Lauren Lucero")
+    expect(manager.name).to.equal("Lauren Lucero");
   });
-
 });

@@ -1,10 +1,10 @@
 /* variables */
-$orange: #E4A516;
-$light-orange: #F5DDA8;
-$dark: #1C1503;
-$light: #FCF4E2;
+$orange: #e4a516;
+$light-orange: #f5dda8;
+$dark: #1c1503;
+$light: #fcf4e2;
 $deep-green: #085517;
-$bright-green: #B0EE6D;
+$bright-green: #b0ee6d;
 
 *,
 *:after,
@@ -21,7 +21,7 @@ html {
 body {
   align-content: space-around;
   align-items: center;
-  background-image: url('../images/background.png');
+  background-image: url("../images/background.png");
   background-size: cover;
   color: $dark;
   display: flex;
@@ -51,16 +51,16 @@ h1 {
 
 #login-error-msg {
   background-color: $light-orange;
-  border: .1em solid $orange;
-  border-radius: .1em;
+  border: 0.1em solid $orange;
+  border-radius: 0.1em;
   color: $dark;
   display: flex;
-  font-size: .8em;
+  font-size: 0.8em;
   font-weight: bold;
   justify-content: center;
-  margin: .2em;
+  margin: 0.2em;
   opacity: 0;
-  padding: .5em;
+  padding: 0.5em;
   text-align: center;
   width: 70%;
 }
@@ -79,21 +79,21 @@ h1 {
 .login-form-field {
   color: $dark;
   border: none;
-  border-bottom: .1em solid $dark;
-  border-radius: .1em;
-  margin: .5em;
+  border-bottom: 0.1em solid $dark;
+  border-radius: 0.1em;
+  margin: 0.5em;
   outline: none;
   padding: 1em;
-  width: 70%
+  width: 70%;
 }
 
 #login-form-submit {
   background-color: $orange;
   border: none;
-  border-radius: .2em;
+  border-radius: 0.2em;
   color: $light;
   font-weight: bold;
   font-size: 1em;
-  padding: .8em;
+  padding: 0.8em;
   width: 70%;
 }

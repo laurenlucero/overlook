@@ -20,11 +20,10 @@ describe("Guest", function() {
   });
 
   it("should have a name", function() {
-    expect(guest.name).to.equal("Leatha Ullrich")
+    expect(guest.name).to.equal("Leatha Ullrich");
   });
 
   it("should return a first name", function() {
-    expect(guest.getFirstName()).to.equal("Leatha")
+    expect(guest.getFirstName()).to.equal("Leatha");
   });
-  
 });
