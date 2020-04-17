@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <title>Webpack Starter Kit</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hotel Media Naranja</title>
+<link href="https://fonts.googleapis.com/css2?family=Muli&family=Righteous&display=swap" rel="stylesheet">
   </head>
   <body>
-    <h1>Webpack Starter Kit</h1>
+  <header>
+    <h1>Hotel Media Naranja</h1>
+  </header>
+  <main id="login-holder">
+        <h2 id="login-header">Login to view rooms & bookings</h2>
 
-    <img src="./images/turing-logo.png" alt="turing logo" height="100px" width="100px">
+        <div id="login-error-msg-holder">
+          <p id="login-error-msg">Invalid username and/or password</p>
+        </div>
 
-    <!-- Do not include the index.js or main.bundle.js file here - it is done automatically by the webpack server -->
+        <form id="login-form">
+          <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
+          <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
+          <input type="submit" value="Login" id="login-form-submit">
+        </form>
+    </main>
+
   </body>
 </html>

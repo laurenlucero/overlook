@@ -1,6 +1,95 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+/* variables */
+$orange: #E4A516;
+$light-orange: #F5DDA8;
+$dark: #1C1503;
+$light: #FCF4E2;
+$deep-green: #085517;
+$bright-green: #B0EE6D;
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+}
 
 body {
-  background-color: $primary-background;
+  align-items: center;
+  background-image: url('../images/background.png');
+  color: $dark;
+  display: flex;
+  flex-direction: column;
+  font-family: "Muli", sans-serif;
+  height: 100%;
+  justify-content: center;
+  margin: 0;
+}
+
+h1 {
+  font-family: "Righteous", cursive;
+}
+
+#login-holder {
+  align-items: center;
+  background-color: $light;
+  border-radius: 1em;
+  box-shadow: 0px 0px 3px 3px $dark;
+  display: grid;
+  height: 50%;
+  justify-content: center;
+  width: 50%;
+}
+
+#login-error-msg-holder {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+#login-error-msg {
+  background-color: $light-orange;
+  border: .1em solid $orange;
+  border-radius: .1em;
+  color: $dark;
+  font-size: 1em;
+  font-weight: bold;
+  margin: 0;
+  opacity: 0;
+  padding: .5em;
+  text-align: center;
+  width: 50%;
+}
+
+#login-form {
+  align-items: center;
+  display: grid;
+  justify-content: center;
+}
+
+.login-form-field::placeholder {
+  color: $dark;
+}
+
+.login-form-field {
+  border: none;
+  border-bottom: .1em solid $dark;
+  border-radius: .1em;
+  margin: .9em;
+  outline: none;
+  padding: 1em;
+}
+
+#login-form-submit {
+  background-color: $orange;
+  border: none;
+  border-radius: .2em;
+  color: $light;
+  font-weight: bold;
+  padding: 1em;
+  width: 100%;
 }
