@@ -39,7 +39,7 @@
     </section>
 
     <section class="manager-dashboard">
-    <nav class="manager-nav">
+
       <h2>Welcome, <span class="first-name"></span></h2>
       <h2>Today is <span class="today-date"></span></h2>
       <label for="site-search">Search guests:</label>
@@ -50,7 +50,6 @@
         aria-label="Search site"
       />
       <button type="button">Search</button>
-    </nav>
 
       <div class="dashboard-section">
         <h3>Rooms Available</h3>
@@ -69,22 +68,23 @@
 
       <div class="dashboard-section">
         <h3>New Booking</h3>
-        <label for="start-date">Start date:</label>
-        <input type="date" id="start-date" name="trip-start"
+        <form action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings" method="post">
+        <label for="select-date">Select  to view available rooms:</label>
+        <input type="date" id="select-date" name="trip-date"
        value="YYYY-MM-DD"
        min="2020-01-01" max="2021-12-31">
+     </form>
       </div>
     </section>
 
     <section class="guest-dashboard">
-      <nav class="guest-nav">
+
         <h2>Welcome, <span class="first-name"></span></h2>
         <h2>Today is <span class="today-date"></span></h2>
-      </nav>
-      
+
       <div class="dashboard-section">
         <h3>My Bookings</h3>
-        <p class="user-bookings"></p>
+        <p class="my-bookings"></p>
       </div>
 
       <div class="dashboard-section">
