@@ -9,12 +9,15 @@
       rel="stylesheet"
     />
   </head>
+
   <body>
     <header>
       <h1>Hotel Media Naranja</h1>
     </header>
-    <main id="login-holder">
+
+    <section id="login-holder">
       <h2 id="login-header">Welcome ~ Bienvenida</h2>
+      <p>Please login to view rooms and bookings</p>
       <form id="login-form">
         <input
           type="text"
@@ -33,6 +36,64 @@
         <p id="login-error-msg">Invalid username and / or password</p>
         <input type="submit" value="Login" id="login-form-submit" />
       </form>
-    </main>
+    </section>
+
+    <section class="manager-dashboard">
+    <nav class="manager-nav">
+      <h2>Welcome, <span class="first-name"></span></h2>
+      <h2>Today is <span class="today-date"></span></h2>
+      <label for="site-search">Search guests:</label>
+      <input
+        type="search"
+        id="site-search"
+        name="q"
+        aria-label="Search site"
+      />
+      <button type="button">Search</button>
+    </nav>
+
+      <div class="dashboard-section">
+        <h3>Rooms Available</h3>
+        <p class="rooms-available"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Rooms Occupied</h3>
+        <p class="rooms-occupied"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Revenue</h3>
+        <p class="revenue"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>New Booking</h3>
+        <label for="start-date">Start date:</label>
+        <input type="date" id="start-date" name="trip-start"
+       value="YYYY-MM-DD"
+       min="2020-01-01" max="2021-12-31">
+      </div>
+    </section>
+
+    <section class="guest-dashboard">
+      <nav class="guest-nav">
+        <h2>Welcome, <span class="first-name"></span></h2>
+        <h2>Today is <span class="today-date"></span></h2>
+      </nav>
+      
+      <div class="dashboard-section">
+        <h3>My Bookings</h3>
+        <p class="user-bookings"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Spending</h3>
+        <p class="spending"></p>
+      </div>
+
+      <!-- new booking -->
+
+    </section>
   </body>
 </html>
