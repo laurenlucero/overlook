@@ -1,10 +1,35 @@
+// mixins
+@mixin flex-display {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin box-shadow {
+  box-shadow: 0px 0px 2px 2px $dark;
+}
+
+@mixin border {
+  border: none;
+  border-radius: 0.2em;
+}
+
+@mixin button {
+  background-color: $orange;
+  color: $light;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.5em;
+}
+
 /* variables */
-$orange: #E4A516;
-$light-orange: #F5DDA8;
-$dark: #1C1503;
-$light: #FCF4E2;
+$orange: #e4a516;
+$light-orange: #f5dda8;
+$dark: #1c1503;
+$light: #fcf4e2;
 $deep-green: #085517;
-$bright-green: #B0EE6D;
+$bright-green: #b0ee6d;
 
 *,
 *:after,
@@ -15,21 +40,15 @@ $bright-green: #B0EE6D;
 }
 
 html {
-  height: 100%;
+  height: 100vh;
 }
 
 body {
-  align-content: space-around;
-  align-items: center;
-  background-image: url('../images/background.png');
+  @include flex-display;
+  background-image: url("../images/background.png");
   background-size: cover;
   color: $dark;
-  display: flex;
-  flex-direction: column;
   font-family: "Muli", sans-serif;
-  height: 100%;
-  justify-content: center;
-  margin: 0;
 }
 
 h1 {
@@ -37,63 +56,61 @@ h1 {
 }
 
 #login-holder {
-  align-content: space-around;
-  align-items: center;
+  @include flex-display;
+  @include box-shadow;
+  @include border;
   background-color: $light;
-  border-radius: 1em;
-  box-shadow: 0px 0px 3px 3px $dark;
-  display: flex;
-  flex-direction: column;
-  height: 50%;
-  justify-content: center;
-  width: 50%;
-}
 
-#login-error-msg {
-  background-color: $light-orange;
-  border: .1em solid $orange;
-  border-radius: .1em;
-  color: $dark;
-  display: flex;
-  font-size: .8em;
-  font-weight: bold;
-  justify-content: center;
-  margin: .2em;
-  opacity: 0;
-  padding: .5em;
-  text-align: center;
-  width: 70%;
-}
+  #login-form {
+    @include flex-display;
 
-#login-form {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.login-form-field::placeholder {
-  color: $dark;
+    #login-error-msg {
+      background-color: $light-orange;
+      border: 0.1em solid $orange;
+      border-radius: 0.1em;
+      color: $dark;
+      font-size: 0.8em;
+      font-weight: bold;
+      margin: 0.2em;
+      opacity: 0;
+      padding: 0.4em;
+    }
+    #login-form-submit {
+      @include box-shadow;
+      @include border;
+      @include button;
+      // background-color: $orange;
+      // color: $light;
+      // font-weight: bold;
+      // font-size: 1em;
+      // padding: 0.5em;
+    }
+  }
 }
 
 .login-form-field {
+  @include border;
   color: $dark;
-  border: none;
-  border-bottom: .1em solid $dark;
-  border-radius: .1em;
-  margin: .5em;
+  border-bottom: 0.1em solid $dark;
+  margin: 0.5em;
   outline: none;
   padding: 1em;
-  width: 70%
+  width: 70%;
+  &::placeholder {
+    color: $orange;
+  }
 }
 
-#login-form-submit {
-  background-color: $orange;
-  border: none;
-  border-radius: .2em;
-  color: $light;
-  font-weight: bold;
-  font-size: 1em;
-  padding: .8em;
-  width: 70%;
+.dashboard-section {
+  @include flex-display;
+  @include box-shadow;
+  @include border;
+  background-color: $light;
+  margin: 1em;
+}
+
+#search-btn {
+  @include box-shadow;
+  @include border;
+  @include button;
 }

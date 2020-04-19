@@ -2,23 +2,98 @@
 <html lang="en-US">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hotel Media Naranja</title>
-<link href="https://fonts.googleapis.com/css2?family=Muli&family=Righteous&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Muli&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
   </head>
-  <body>
-  <header>
-    <h1>Hotel Media Naranja</h1>
-  </header>
-  <main id="login-holder">
-        <h2 id="login-header">Welcome ~ Bienvenida</h2>
-        <form id="login-form">
-          <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
-          <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-          <p id="login-error-msg">Invalid username  and / or password</p>
-          <input type="submit" value="Login" id="login-form-submit">
-        </form>
-    </main>
 
+  <body>
+    <header>
+      <h1>Hotel Media Naranja</h1>
+    </header>
+
+    <section id="login-holder">
+      <h2 id="login-header">Welcome ~ Bienvenida</h2>
+      <p>Please login to view rooms and bookings</p>
+      <form id="login-form">
+        <input
+          type="text"
+          name="username"
+          id="username-field"
+          class="login-form-field"
+          placeholder="Username"
+        />
+        <input
+          type="password"
+          name="password"
+          id="password-field"
+          class="login-form-field"
+          placeholder="Password"
+        />
+        <p id="login-error-msg">Invalid username and / or password</p>
+        <input type="submit" value="Login" id="login-form-submit" />
+      </form>
+    </section>
+
+    <section class="manager-dashboard">
+
+      <h2>Welcome, <span class="first-name"></span></h2>
+      <h2>Today is <span class="today-date"></span></h2>
+      <label for="site-search">Search guests:</label>
+      <input
+        type="search"
+        id="site-search"
+        name="q"
+        aria-label="Search site"
+      />
+      <button type="button" id="search-btn">Search</button>
+
+      <div class="dashboard-section">
+        <h3>Rooms Available</h3>
+        <p class="rooms-available"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Rooms Occupied</h3>
+        <p class="rooms-occupied"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Revenue</h3>
+        <p class="revenue"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>New Booking</h3>
+        <form action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings" method="post">
+        <label for="select-date">Select date to view available rooms:</label>
+        <input type="date" id="select-date" name="trip-date"
+       value="yyyy-MM-dd"
+       min="2020-01-01" max="2021-12-31">
+     </form>
+      </div>
+    </section>
+
+    <section class="guest-dashboard">
+
+        <h2>Welcome, <span class="first-name"></span></h2>
+        <h2>Today is <span class="today-date"></span></h2>
+
+      <div class="dashboard-section">
+        <h3>My Bookings</h3>
+        <p class="my-bookings"></p>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Spending</h3>
+        <p class="spending"></p>
+      </div>
+
+      <!-- new booking -->
+
+    </section>
   </body>
 </html>
