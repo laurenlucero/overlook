@@ -1,7 +1,7 @@
 import $ from "jquery";
 
 let domUpdates = {
-  
+
   displayUserName() {
     // guest and manager
   },
@@ -26,9 +26,10 @@ let domUpdates = {
     // guest and manager
   },
 
-  displayGuestSpending() {
-    // guest and manager
-  },
+  // displayGuestSpending() {
+  //   let total = guest.calculateTotalSpending(roomData);
+  //   $('.spending').test(total.toFixed(2))
+  // },
 
   displayNoRoomsAvailable() {
     // guest and manager

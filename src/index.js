@@ -3,7 +3,8 @@
 
 import $ from "jquery";
 import "./css/base.scss";
-import Hotel from './Hotel';
+import Hotel from "./Hotel";
+import Guest from "./Guest";
 
 // imported images
 import "./images/background.png";
@@ -13,6 +14,7 @@ let guestData;
 let roomData;
 let bookingData;
 let hotel;
+let guest;
 
 // event listenters
 
@@ -43,26 +45,39 @@ Promise.all([getGuests, getRooms, getBookings])
     bookingData = data[2];
   })
   .then(data => {
-      hotel = new Hotel(new Date(), guestData, roomData, bookingData)
+    hotel = new Hotel(new Date(), guestData, roomData, bookingData);
   })
   .catch(error => console.error("promise error"));
-
 
 // post data
 
 // delete data
 
-
+// domUpdates
 // Login
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
   let password = $("#password-field").val();
 
-  if (username === "manager" || username.includes("customer") && password === "overlook2020") {
+  if (
+    username === "manager" ||
+    (username.includes("customer") && password === "overlook2020")
+  ) {
     alert("You have successfully logged in.");
     location.reload();
   } else {
     $("#login-error-msg").css("opacity", 1);
   }
 });
+
+function welcomeGuest() {
+ guest = new Guest(guestData, bookingData)
+}
+
+function displayGuestSpending() {
+  let total = guest.calculateTotalSpending(roomData);
+  $(".spending").test(total.toFixed(2));
+}
+
+displayGuestSpending();

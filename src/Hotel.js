@@ -11,6 +11,11 @@ class Hotel {
     this.date = date.split("-").join("/");
   }
 
+  getCurrentUser(id) {
+    let currentUser = this.guests.find(guest => guest.id === id);
+    return currentUser;
+}
+
   filterRoomsByType(type) {
     let filteredRooms = this.rooms.filter(room => type === room.roomType);
     return filteredRooms;
