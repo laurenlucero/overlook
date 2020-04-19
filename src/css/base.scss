@@ -15,6 +15,14 @@
   border-radius: 0.2em;
 }
 
+@mixin button {
+  background-color: $orange;
+  color: $light;
+  font-weight: bold;
+  font-size: 1em;
+  padding: 0.5em;
+}
+
 /* variables */
 $orange: #e4a516;
 $light-orange: #f5dda8;
@@ -70,12 +78,12 @@ h1 {
     #login-form-submit {
       @include box-shadow;
       @include border;
-      background-color: $orange;
-      color: $light;
-      font-weight: bold;
-      font-size: 1em;
-      padding: 0.8em;
-      width: 70%;
+      @include button;
+      // background-color: $orange;
+      // color: $light;
+      // font-weight: bold;
+      // font-size: 1em;
+      // padding: 0.5em;
     }
   }
 }
@@ -99,4 +107,10 @@ h1 {
   @include border;
   background-color: $light;
   margin: 1em;
+}
+
+#search-btn {
+  @include box-shadow;
+  @include border;
+  @include button;
 }

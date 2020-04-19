@@ -11,42 +11,54 @@ import "./css/base.scss";
 import "./images/background.png";
 
 // global variables
-let users;
-let rooms;
-let bookings;
+let guestData;
+let roomData;
+let bookingData
+let guest;
 
 // event listenters
 
 // fetch data
+// put fetch and promise into a function onload
 
-const getUsers = fetch(
+const getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
 )
   .then(response => response.json())
-  .then(result => console.log(result))
+  .then(data => console.log(data))
   .catch(error => console.error("user error"));
 
 const getRooms = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms"
 )
   .then(response => response.json())
-  .then(result => console.log(result))
+  .then(data => console.log(data))
   .catch(error => console.error("room error"));
 
 const getBookings = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
 )
   .then(response => response.json())
-  .then(result => console.log(result))
+  .then(data => console.log(data))
   .catch(error => console.error("booking error"));
 
-Promise.all([getUsers, getRooms, getBookings])
-  .then(result => {
-    users = result[0];
-    rooms = result[1];
-    bookings = result[2];
+Promise.all([getGuests, getRooms, getBookings])
+  .then(data => {
+    guestData = data[0];
+    roomData = data[1];
+    bookingData = data[2];
   })
   .catch(error => console.error("promise error"));
+
+function instantiateGuests() {
+  guestData.forEach(guest => {
+    guest = new Guest(guest);
+    hotel.guests.push(guest);
+  })
+  console.log(hotel.guests);
+}
+
+instantiateGuests()
 
 // post data
 

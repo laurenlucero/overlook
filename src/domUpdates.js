@@ -1,7 +1,11 @@
-class domUpdates {
-  constructor() {}
+/*
+let domUpdates = {
 
   displayUserName() {
+    // guest and manager
+  }
+
+  displayTodaysDate() {
     // guest and manager
   }
 
@@ -31,3 +35,5 @@ class domUpdates {
     // display a message fiercely apologizing to the user and asking them to adjust their room search
   }
 }
+export default domUpdates;
+*/
