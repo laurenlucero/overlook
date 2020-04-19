@@ -75,3 +75,10 @@ Promise.all([getGuests, getRooms, getBookings])
       $("#login-error-msg").css("opacity", 1);
     }
   });
+
+  $(".logout").on("click", e => {
+    $("#login-holder").css("display", "block")
+    $(".guest-dashboard").addClass("hide")
+    $(".manager-dashboard").addClass("hide")
+    location.reload();
+  })

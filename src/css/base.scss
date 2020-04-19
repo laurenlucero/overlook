@@ -90,6 +90,13 @@ h2, p {
   }
 }
 
+#search-btn, .logout {
+  @include box-shadow;
+  @include border;
+  @include button;
+  margin: .5em;
+}
+
 .login-form-field {
   @include border;
   color: $dark;
@@ -112,11 +119,6 @@ h2, p {
   width: 75%
 }
 
-#search-btn {
-  @include box-shadow;
-  @include border;
-  @include button;
-}
 
 .hide {
   display: none;
