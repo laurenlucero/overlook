@@ -1,33 +1,34 @@
-/*
-nplet domUpdates = {
+import $ from "jquery";
 
+let domUpdates = {
+  
   displayUserName() {
     // guest and manager
-  }
+  },
 
   displayTodaysDate() {
     // guest and manager
-  }
+  },
 
   displayRoomsAvailableToday() {
     // manager
-  }
+  },
 
   displayTotalRevenueToday() {
     // manager
-  }
+  },
 
   displayPercentOccupiedToday() {
     // manager
-  }
+  },
 
   displayGuestBookings() {
     // guest and manager
-  }
+  },
 
   displayGuestSpending() {
     // guest and manager
-  }
+  },
 
   displayNoRoomsAvailable() {
     // guest and manager
@@ -35,5 +36,5 @@ nplet domUpdates = {
     // display a message fiercely apologizing to the user and asking them to adjust their room search
   }
 }
+
 export default domUpdates;
-*/
