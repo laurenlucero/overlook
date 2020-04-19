@@ -1,5 +1,5 @@
 /*
-let domUpdates = {
+nplet domUpdates = {
 
   displayUserName() {
     // guest and manager

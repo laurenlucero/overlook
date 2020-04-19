@@ -6,8 +6,8 @@ class Guest {
     this.id = guestData.id;
     this.name = guestData.name;
     this.bookings = bookingData;
-    // this.username;
-    // this.password = 'overlook2020';
+    this.username = `customer${guestData.id}`
+    this.password = 'overlook2020';
   }
 
   getFirstName() {

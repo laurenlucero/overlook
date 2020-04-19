@@ -50,15 +50,15 @@ Promise.all([getGuests, getRooms, getBookings])
   })
   .catch(error => console.error("promise error"));
 
-function instantiateGuests() {
-  guestData.forEach(guest => {
-    guest = new Guest(guest);
-    hotel.guests.push(guest);
-  })
-  console.log(hotel.guests);
-}
-
-instantiateGuests()
+// function instantiateGuests() {
+//   guestData.forEach(guest => {
+//     guest = new Guest(guest);
+//     hotel.guests.push(guest);
+//   })
+//   console.log(hotel.guests);
+// }
+//
+// instantiateGuests()
 
 // post data
 
@@ -73,7 +73,7 @@ $("#login-form-submit").on("click", e => {
   let username = $("#username-field").val();
   let password = $("#password-field").val();
 
-  if (username === "manager" && password === "overlook2020") {
+  if (username === "manager" || username.includes("customer") && password === "overlook2020") {
     alert("You have successfully logged in.");
     location.reload();
   } else {
