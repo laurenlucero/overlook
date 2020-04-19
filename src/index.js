@@ -6,6 +6,7 @@ import "./css/base.scss";
 import Hotel from "./Hotel";
 import Manager from "./Manager";
 import Guest from "./Guest";
+import domUpdates from "./domUpdates";
 
 // imported images
 import "./images/background.png";
@@ -17,6 +18,7 @@ let bookingData;
 let hotel;
 let manager;
 let guest;
+let usernameID;
 
 // event listenters
 
@@ -42,43 +44,56 @@ let getBookings = fetch(
 
 Promise.all([getGuests, getRooms, getBookings])
   .then(data => {
-    guestData = data[0];
-    roomData = data[1];
-    bookingData = data[2];
+    guestData = data[0].users;
+    roomData = data[1].rooms;
+    bookingData = data[2].bookings;
   })
   .then(data => {
     hotel = new Hotel(new Date(), guestData, roomData, bookingData);
-  })
-  .then(data => {
-    manager = new Manager(1, "Lauren");
+    hotel.getTodaysDate();
   })
   .catch(error => console.error("promise error"));
 // post data
 // delete data
 
-// domUpdates
-// Login
-// function login() {
-  $("#login-form-submit").on("click", e => {
-    e.preventDefault();
-    let username = $("#username-field").val();
-    let password = $("#password-field").val();
+// instantiateGuest()
 
-    if (username === "manager" && password === "overlook2020")
-    {
-      $("#login-holder").css("display", "none")
-      $(".manager-dashboard").removeClass("hide")
-    } else if ((username.includes("customer") && password === "overlook2020")) {
-      $("#login-holder").css("display", "none")
-      $(".guest-dashboard").removeClass("hide")
-    } else {
-      $("#login-error-msg").css("opacity", 1);
-    }
-  });
+$("#login-form-submit").on("click", e => {
+  e.preventDefault();
+  let username = $("#username-field").val();
+  let password = $("#password-field").val();
+  let splitUsername = $("#username-field")
+    .val()
+    .split("r");
+  usernameID = +splitUsername[1];
+  if (usernameID > 50) {
+    domUpdates.displayLoginError();
+  } else if (username === "manager" && password === "overlook2020") {
+    domUpdates.displayManagerDash();
+    instantiateManager()
+  } else if (username.includes("customer") && password === "overlook2020") {
+    domUpdates.displayGuestDash();
+    instantiateGuest()
+  } else {
+    domUpdates.displayLoginError();
+  }
+});
 
-  $(".logout").on("click", e => {
-    $("#login-holder").css("display", "block")
-    $(".guest-dashboard").addClass("hide")
-    $(".manager-dashboard").addClass("hide")
-    location.reload();
-  })
+$(".logout").on("click", e => {
+  domUpdates.logout();
+  location.reload();
+});
+
+function instantiateManager() {
+  manager = new Manager(1, "Lauren");
+  $(".manager-name").text(`${manager.name}`)
+  $(".today-date").text(`${hotel.date}`)
+}
+
+function instantiateGuest() {
+  let currentGuest = guestData.find(guest => guest.id === usernameID);
+  let currentBookings = bookingData.filter(booking => booking.userID === usernameID);
+  guest = new Guest(currentGuest, currentBookings)
+  $(".guest-name").text(`${guest.getFirstName()}`)
+  $(".today-date").text(`${hotel.date}`)
+}

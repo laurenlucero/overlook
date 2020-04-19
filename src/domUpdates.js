@@ -2,6 +2,26 @@ import $ from "jquery";
 
 let domUpdates = {
 
+  displayLoginError() {
+    $("#login-error-msg").css("opacity", 1);
+  },
+
+  displayManagerDash() {
+    $("#login-holder").css("display", "none")
+    $(".manager-dashboard").removeClass("hide")
+  },
+
+displayGuestDash() {
+  $("#login-holder").css("display", "none")
+  $(".guest-dashboard").removeClass("hide")
+},
+
+logout() {
+  $("#login-holder").css("display", "block");
+  $(".guest-dashboard").addClass("hide");
+  $(".manager-dashboard").addClass("hide");
+},
+
   displayUserName() {
     // guest and manager
   },
