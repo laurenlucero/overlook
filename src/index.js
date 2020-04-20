@@ -19,6 +19,7 @@ let hotel;
 let manager;
 let guest;
 let usernameID;
+let today = "2020/02/04";
 
 // event listenters
 
@@ -57,7 +58,6 @@ Promise.all([getGuests, getRooms, getBookings])
 // delete data
 
 // instantiateGuest()
-
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
@@ -70,10 +70,10 @@ $("#login-form-submit").on("click", e => {
     domUpdates.displayLoginError();
   } else if (username === "manager" && password === "overlook2020") {
     domUpdates.displayManagerDash();
-    instantiateManager()
+    instantiateManager();
   } else if (username.includes("customer") && password === "overlook2020") {
     domUpdates.displayGuestDash();
-    instantiateGuest()
+    instantiateGuest();
   } else {
     domUpdates.displayLoginError();
   }
@@ -84,16 +84,57 @@ $(".logout").on("click", e => {
   location.reload();
 });
 
-function instantiateManager() {
+const instantiateManager = () => {
   manager = new Manager(1, "Lauren");
-  $(".manager-name").text(`${manager.name}`)
-  $(".today-date").text(`${hotel.date}`)
+  $(".manager-name").text(`${manager.name}`);
+  $(".today-date").text(`${hotel.date}`);
+  displayRoomsAvailableToday();
+  displayPercentOccupiedToday();
+  displayTodaysRevenue();
+};
+
+const instantiateGuest = () => {
+  let currentGuest = guestData.find(guest => guest.id === usernameID);
+  let currentBookings = bookingData.filter(
+    booking => booking.userID === usernameID
+  );
+  guest = new Guest(currentGuest, currentBookings);
+  $(".guest-name").text(`${guest.getFirstName()}`);
+  $(".today-date").text(`${hotel.date}`);
+  displayGuestBookings();
+  displayGuestSpending();
+};
+
+const displayGuestBookings = () => {
+  let myBookings = guest.findBookings();
+  return myBookings.map(booking => {
+    $(".my-bookings").html(
+      `<li>Date: ${booking.date}, Room: ${booking.roomNumber}</li>`
+    );
+  });
+};
+
+const displayGuestSpending = () => {
+  let total = guest.calculateTotalSpending(roomData);
+  $(".spending").text(total.toFixed(2));
+};
+
+const displayRoomsAvailableToday = () => {
+  let roomsAvailableToday = hotel.getAvailableRoomsByDate(today, roomData, bookingData)
+  console.log(roomsAvailableToday);
+  // $(".rooms-available")
 }
 
-function instantiateGuest() {
-  let currentGuest = guestData.find(guest => guest.id === usernameID);
-  let currentBookings = bookingData.filter(booking => booking.userID === usernameID);
-  guest = new Guest(currentGuest, currentBookings)
-  $(".guest-name").text(`${guest.getFirstName()}`)
-  $(".today-date").text(`${hotel.date}`)
+const displayPercentOccupiedToday = () => {
+  $(".rooms-occupied").text(manager.calculatePercentOccupiedToday(
+    bookingData,
+    roomData,
+    today
+  ))
 }
+
+const displayTodaysRevenue = () => {
+  $(".revenue").text(
+    manager.calculateTodaysRevenue(bookingData, roomData, today)
+  );
+};
