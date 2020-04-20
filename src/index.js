@@ -148,3 +148,32 @@ const displayTodaysRevenue = () => {
     manager.calculateTodaysRevenue(bookingData, roomData, today)
   );
 };
+
+$("#date-submit").on("click", e => {
+  let date = $("#select-date")
+    .val()
+    .split("-")
+    .join("/");
+  let availableRooms = hotel.getAvailableRoomsByDate(
+    date,
+    roomData,
+    bookingData
+  );
+  return availableRooms.map(room => {
+    $(".available-rooms").append(
+      `<li>Room Number: ${room.number}</br>
+          Room Type: ${room.roomType}</br>
+          Bed Size: ${room.bedSize}</br>
+          Number of Beds: ${room.numBeds}</br>
+          Cost Per Night: ${room.costPerNight}</li>
+          <button type="button" class="book-room">Book Room</button>`
+    );
+  });
+});
+
+// get available rooms by date w/ hotel.getAvailableRoomsByDate(date = this.date, rooms = this.rooms, bookings = this.bookings)
+// date is select-date value
+// display available rooms and form to book room - form takes userID, date and roomNumber to book
+// filter rooms by room type with hotel.filterRoomsByType(type)
+// use manager.bookRoom method to select room and post data
+// if no rooms / roomtype available, display apology message

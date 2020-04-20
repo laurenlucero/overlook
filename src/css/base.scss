@@ -91,7 +91,7 @@ li {
 }
 
 #search-btn,
-.logout {
+.logout, #date-submit, .book-room {
   @include box-shadow;
   @include border;
   @include button;

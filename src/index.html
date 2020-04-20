@@ -74,7 +74,7 @@
         <ul class="rooms-available"></ul>
       </div>
 
-      <div class="dashboard-section">
+      <!-- <div class="dashboard-section">
         <h3>New Booking</h3>
         <form
           action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
@@ -90,7 +90,7 @@
             max="2022-12-31"
           />
         </form>
-      </div>
+      </div> -->
       <button type="button" class="logout">Logout</button>
     </section>
 
@@ -111,7 +111,27 @@
         <h3>My Bookings</h3>
         <ul class="my-bookings"></ul>
       </div>
-      <!-- new booking -->
+
+      <div class="dashboard-section">
+        <h3>New Booking</h3>
+        <form
+          action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
+          method="post"
+        >
+          <label for="select-date">Select date to view available rooms:</label>
+          <input
+            type="date"
+            id="select-date"
+            name="trip-date"
+            value="yyyy-MM-dd"
+            min="2020-01-01"
+            max="2022-12-31"
+          />
+        </form>
+        <input type="submit" value="Submit" id="date-submit" />
+        <ul class="available-rooms"></ul>
+      </div>
+
       <button type="button" class="logout">Logout</button>
     </section>
   </body>
