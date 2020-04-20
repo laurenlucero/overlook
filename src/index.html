@@ -15,50 +15,53 @@
       <h1>Hotel Media Naranja</h1>
     </header>
 
-    <section id="login-holder">
-      <h2 id="login-header">Welcome ~ Bienvenida</h2>
-      <p>Please login to view rooms and bookings</p>
-      <form id="login-form">
+    <section id="login-holder" class="login-dashboard">
+      <h2 id="login-header">Bienvenida</h2>
+      <label for="login-form">Please login to view rooms & bookings</label>
+      <form action="" method="get" id="login-form">
+<label for="username-field">Enter username</label>
         <input
           type="text"
           name="username"
           id="username-field"
           class="login-form-field"
-          placeholder="Username"
+          placeholder="username"
         />
+        <label for="password-field">Enter password</label>
         <input
           type="password"
           name="password"
           id="password-field"
           class="login-form-field"
-          placeholder="Password"
+          placeholder="password"
         />
         <p id="login-error-msg">Invalid username and / or password</p>
         <input type="submit" value="Login" id="login-form-submit" />
       </form>
     </section>
 
-    <section class="manager-dashboard">
+    <section class="manager-dashboard hide">
+      <div class="dashboard-welcome">
+        <h2>
+          Welcome, <span class="manager-name"></span>! Today is
+          <span class="today-date"></span>.
+        </h2>
+      </div>
 
-      <h2>Welcome, <span class="first-name"></span></h2>
-      <h2>Today is <span class="today-date"></span></h2>
-      <label for="site-search">Search guests:</label>
-      <input
-        type="search"
-        id="site-search"
-        name="q"
-        aria-label="Search site"
-      />
-      <button type="button" id="search-btn">Search</button>
-
-      <div class="dashboard-section">
-        <h3>Rooms Available</h3>
-        <p class="rooms-available"></p>
+      <div class="search">
+        <label for="site-search">Search guests:</label>
+        <input
+          type="search"
+          id="site-search"
+          name="q"
+          aria-label="Search site"
+        />
+        <button type="button" id="search-btn">Search</button>
       </div>
 
       <div class="dashboard-section">
         <h3>Rooms Occupied</h3>
-        <p class="rooms-occupied"></p>
+        <p><span class="rooms-occupied"></span>%</p>
       </div>
 
       <div class="dashboard-section">
@@ -67,24 +70,36 @@
       </div>
 
       <div class="dashboard-section">
-        <h3>New Booking</h3>
-        <form action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings" method="post">
-        <label for="select-date">Select date to view available rooms:</label>
-        <input type="date" id="select-date" name="trip-date"
-       value="yyyy-MM-dd"
-       min="2020-01-01" max="2021-12-31">
-     </form>
+        <h3>Rooms Available</h3>
+        <ul class="rooms-available"></ul>
       </div>
-    </section>
-
-    <section class="guest-dashboard">
-
-        <h2>Welcome, <span class="first-name"></span></h2>
-        <h2>Today is <span class="today-date"></span></h2>
 
       <div class="dashboard-section">
-        <h3>My Bookings</h3>
-        <p class="my-bookings"></p>
+        <h3>New Booking</h3>
+        <form
+          action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
+          method="post"
+        >
+          <label for="select-date">Select date to view available rooms:</label>
+          <input
+            type="date"
+            id="select-date"
+            name="trip-date"
+            value="yyyy-MM-dd"
+            min="2020-01-01"
+            max="2022-12-31"
+          />
+        </form>
+      </div>
+      <button type="button" class="logout">Logout</button>
+    </section>
+
+    <section class="guest-dashboard hide">
+      <div class="dashboard-welcome">
+        <h2>
+          Welcome, <span class="guest-name"></span>! Today is
+          <span class="today-date"></span>.
+        </h2>
       </div>
 
       <div class="dashboard-section">
@@ -92,8 +107,13 @@
         <p class="spending"></p>
       </div>
 
+      <div class="dashboard-section">
+        <h3>My Bookings</h3>
+        <ul class="my-bookings">
+        </ul>
+      </div>
       <!-- new booking -->
-
+      <button type="button" class="logout">Logout</button>
     </section>
   </body>
 </html>

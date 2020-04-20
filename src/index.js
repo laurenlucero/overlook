@@ -1,82 +1,156 @@
 // This is the JavaScript entry file - your code begins here
 // Do not delete or rename this file ********
 
-// An example of how you import jQuery into a JS file if you use jQuery in that file
 import $ from "jquery";
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import "./css/base.scss";
+import Hotel from "./Hotel";
+import Manager from "./Manager";
+import Guest from "./Guest";
+import domUpdates from "./domUpdates";
 
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
+// imported images
 import "./images/background.png";
 
 // global variables
 let guestData;
 let roomData;
-let bookingData
+let bookingData;
+let hotel;
+let manager;
 let guest;
+let usernameID;
+let today = "2020/02/04";
 
 // event listenters
 
 // fetch data
-// put fetch and promise into a function onload
 
-const getGuests = fetch(
+let getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
 )
   .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error("user error"));
+  .catch(error => console.error("user data error"));
 
-const getRooms = fetch(
+let getRooms = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/rooms/rooms"
 )
   .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error("room error"));
+  .catch(error => console.error("room data error"));
 
-const getBookings = fetch(
+let getBookings = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
 )
   .then(response => response.json())
-  .then(data => console.log(data))
-  .catch(error => console.error("booking error"));
+  .catch(error => console.error("booking data error"));
 
 Promise.all([getGuests, getRooms, getBookings])
   .then(data => {
-    guestData = data[0];
-    roomData = data[1];
-    bookingData = data[2];
+    guestData = data[0].users;
+    roomData = data[1].rooms;
+    bookingData = data[2].bookings;
+  })
+  .then(data => {
+    hotel = new Hotel(new Date(), guestData, roomData, bookingData);
+    hotel.getTodaysDate();
   })
   .catch(error => console.error("promise error"));
-
-function instantiateGuests() {
-  guestData.forEach(guest => {
-    guest = new Guest(guest);
-    hotel.guests.push(guest);
-  })
-  console.log(hotel.guests);
-}
-
-instantiateGuests()
-
 // post data
-
 // delete data
 
-// display
-
-// Login
-
+// instantiateGuest()
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
   let password = $("#password-field").val();
-
-  if (username === "manager" && password === "overlook2020") {
-    alert("You have successfully logged in.");
-    location.reload();
+  let splitUsername = $("#username-field")
+    .val()
+    .split("r");
+  usernameID = +splitUsername[1];
+  if (usernameID > 50) {
+    domUpdates.displayLoginError();
+  } else if (username === "manager" && password === "overlook2020") {
+    domUpdates.displayManagerDash();
+    instantiateManager();
+  } else if (username.includes("customer") && password === "overlook2020") {
+    domUpdates.displayGuestDash();
+    instantiateGuest();
   } else {
-    $("#login-error-msg").css("opacity", 1);
+    domUpdates.displayLoginError();
   }
 });
+
+$(".logout").on("click", e => {
+  domUpdates.logout();
+  location.reload();
+});
+
+const instantiateManager = () => {
+  manager = new Manager(1, "Lauren");
+  $(".manager-name").text(`${manager.name}`);
+  $(".today-date").text(`${hotel.date}`);
+  displayRoomsAvailableToday();
+  displayPercentOccupiedToday();
+  displayTodaysRevenue();
+};
+
+const instantiateGuest = () => {
+  let currentGuest = guestData.find(guest => guest.id === usernameID);
+  let currentBookings = bookingData.filter(
+    booking => booking.userID === usernameID
+  );
+  guest = new Guest(currentGuest, currentBookings);
+  $(".guest-name").text(`${guest.getFirstName()}`);
+  $(".today-date").text(`${hotel.date}`);
+  displayGuestBookings();
+  displayGuestSpending();
+};
+
+const displayGuestBookings = () => {
+  let myBookings = guest.findBookings();
+  return myBookings
+    .sort(function(a, b) {
+      if (a.date > b.date) return 1;
+      if (a.date < b.date) return -1;
+      return 0;
+    })
+    .map(booking => {
+      $(".my-bookings").append(
+        `<li>Date: ${booking.date}, Room: ${booking.roomNumber}</li>`
+      );
+    });
+};
+
+const displayGuestSpending = () => {
+  let total = guest.calculateTotalSpending(roomData);
+  $(".spending").text(total.toFixed(2));
+};
+
+const displayRoomsAvailableToday = () => {
+  let roomsAvailableToday = hotel.getAvailableRoomsByDate(
+    today,
+    roomData,
+    bookingData
+  );
+  console.log(roomsAvailableToday);
+  return roomsAvailableToday.map(room => {
+    $(".rooms-available").append(
+      `<li>Room Number: ${room.number}</br>
+      Room Type: ${room.roomType}</br>
+      Bed Size: ${room.bedSize}</br>
+      Number of Beds: ${room.numBeds}</br>
+      Cost Per Night: ${room.costPerNight}</li>`
+    );
+  });
+};
+
+const displayPercentOccupiedToday = () => {
+  $(".rooms-occupied").text(
+    manager.calculatePercentOccupiedToday(bookingData, roomData, today)
+  );
+};
+
+const displayTodaysRevenue = () => {
+  $(".revenue").text(
+    manager.calculateTodaysRevenue(bookingData, roomData, today)
+  );
+};

@@ -42,6 +42,14 @@ describe("Guest", function() {
     expect(guest.name).to.equal("Leatha Ullrich");
   });
 
+  it("should have a username", function() {
+    expect(guest.username).to.equal("customer1");
+  });
+
+  it("should have a password", function() {
+    expect(guest.password).to.equal("overlook2020");
+  });
+
   it("should return a first name", function() {
     expect(guest.getFirstName()).to.equal("Leatha");
   });

@@ -17,7 +17,7 @@
 
 @mixin button {
   background-color: $orange;
-  color: $light;
+  color: $dark;
   font-weight: bold;
   font-size: 1em;
   padding: 0.5em;
@@ -51,9 +51,15 @@ body {
   font-family: "Muli", sans-serif;
 }
 
-h1 {
+h1, #login-header {
   font-family: "Righteous", cursive;
+  padding: .5em;
 }
+
+h2, label, li {
+  padding: .3em;
+}
+
 
 #login-holder {
   @include flex-display;
@@ -75,17 +81,21 @@ h1 {
       opacity: 0;
       padding: 0.4em;
     }
+
     #login-form-submit {
       @include box-shadow;
       @include border;
       @include button;
-      // background-color: $orange;
-      // color: $light;
-      // font-weight: bold;
-      // font-size: 1em;
-      // padding: 0.5em;
+      margin-bottom: .5em;
     }
   }
+}
+
+#search-btn, .logout {
+  @include box-shadow;
+  @include border;
+  @include button;
+  margin: .5em;
 }
 
 .login-form-field {
@@ -109,8 +119,7 @@ h1 {
   margin: 1em;
 }
 
-#search-btn {
-  @include box-shadow;
-  @include border;
-  @include button;
+
+.hide {
+  display: none;
 }

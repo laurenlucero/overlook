@@ -34,6 +34,14 @@ describe("Hotel", function() {
     expect(hotel.date).to.equal("2020/04/19");
   });
 
+  it('should be able to get current logged in user', () => {
+  expect(hotel.getCurrentUser(1)).to.deep.equal(
+    {
+      id: 1,
+      name: "Leatha Ullrich"
+    })
+})
+
   it("should filter the room by type", function() {
     expect(hotel.filterRoomsByType("junior suite")).to.deep.equal([
       {
