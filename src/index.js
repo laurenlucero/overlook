@@ -149,6 +149,10 @@ const displayTodaysRevenue = () => {
   );
 };
 
+$(".new-booking-btn").on("click", e => {
+  domUpdates.displayBookingPage();
+});
+
 $("#date-submit").on("click", e => {
   let date = $("#select-date")
     .val()
@@ -166,14 +170,13 @@ $("#date-submit").on("click", e => {
           Bed Size: ${room.bedSize}</br>
           Number of Beds: ${room.numBeds}</br>
           Cost Per Night: ${room.costPerNight}</li>
-          <button type="button" class="book-room">Book Room</button>`
+          <button type="button" class="book-room-btn">Book Room</button>`
     );
   });
 });
 
-// get available rooms by date w/ hotel.getAvailableRoomsByDate(date = this.date, rooms = this.rooms, bookings = this.bookings)
-// date is select-date value
-// display available rooms and form to book room - form takes userID, date and roomNumber to book
+// display available rooms and book room button
 // filter rooms by room type with hotel.filterRoomsByType(type)
+// book room button takes users to form to book room - form takes userID, date and roomNumber to book
 // use manager.bookRoom method to select room and post data
 // if no rooms / roomtype available, display apology message

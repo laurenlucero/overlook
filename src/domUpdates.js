@@ -21,6 +21,11 @@ let domUpdates = {
     $(".manager-dashboard").addClass("hide");
   },
 
+  displayBookingPage() {
+    $(".booking-page").removeClass("hide");
+    $(".dashboard-sections").addClass("hide");
+  },
+
   displayNoRoomsAvailable() {
     // guest and manager
     // In the event that no rooms are available for the date/roomType selected,

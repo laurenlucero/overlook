@@ -90,8 +90,7 @@ li {
   }
 }
 
-#search-btn,
-.logout, #date-submit, .book-room {
+button, #date-submit {
   @include box-shadow;
   @include border;
   @include button;
