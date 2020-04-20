@@ -31,7 +31,7 @@ describe("Hotel", function() {
 
   it("should get todays date", function() {
     hotel.getTodaysDate();
-    expect(hotel.date).to.equal("2020/04/19");
+    expect(hotel.date).to.equal(new Date().toISOString().slice(0, 10).split("-").join("/"));
   });
 
   it('should be able to get current logged in user', () => {
