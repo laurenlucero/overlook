@@ -26,6 +26,7 @@
           id="username-field"
           class="login-form-field"
           placeholder="username"
+          required
         />
         <label for="password-field">Enter password</label>
         <input
@@ -34,6 +35,7 @@
           id="password-field"
           class="login-form-field"
           placeholder="password"
+          required
         />
         <p id="login-error-msg">Invalid username and / or password</p>
         <input type="submit" value="Login" id="login-form-submit" />
@@ -58,25 +60,25 @@
         />
         <button type="button" id="search-btn">Search</button>
       </div>
-  <section class="dashboard-sections">
-      <div class="dashboard-section">
-        <h3>Rooms Occupied</h3>
-        <p><span class="rooms-occupied"></span>%</p>
-      </div>
+      <section class="dashboard-sections">
+        <div class="dashboard-section">
+          <h3>Rooms Occupied</h3>
+          <p><span class="rooms-occupied"></span>%</p>
+        </div>
 
-      <div class="dashboard-section">
-        <h3>Revenue</h3>
-        <p class="revenue"></p>
-      </div>
+        <div class="dashboard-section">
+          <h3>Revenue</h3>
+          <p class="revenue"></p>
+        </div>
 
-      <div class="dashboard-section">
-        <h3>Rooms Available</h3>
-        <ul class="rooms-available"></ul>
-      </div>
+        <div class="dashboard-section">
+          <h3>Rooms Available</h3>
+          <ul class="rooms-available"></ul>
+        </div>
 
-      <button type="button" class="new-booking-btn">New Booking</button>
-      <button type="button" class="logout">Logout</button>
-    </section>
+        <button type="button" class="new-booking-btn">New Booking</button>
+        <button type="button" class="logout">Logout</button>
+      </section>
     </section>
 
     <section class="guest-dashboard hide">
@@ -88,41 +90,89 @@
       </div>
 
       <section class="dashboard-sections">
-      <div class="dashboard-section">
-        <h3>Spending</h3>
-        <p class="spending"></p>
-      </div>
+        <div class="dashboard-section">
+          <h3>Spending</h3>
+          <p class="spending"></p>
+        </div>
 
-      <div class="dashboard-section">
-        <h3>My Bookings</h3>
-        <ul class="my-bookings"></ul>
-        <button type="button" class="new-booking-btn">New Booking</button>
-      </div>
-      <button type="button" class="logout">Logout</button>
-    </section>
+        <div class="dashboard-section">
+          <h3>My Bookings</h3>
+          <ul class="my-bookings"></ul>
+          <button type="button" class="new-booking-btn">New Booking</button>
+        </div>
+        <button type="button" class="logout">Logout</button>
+      </section>
     </section>
 
     <section class="booking-page hide">
       <div class="dashboard-section">
-      <h3>New Booking</h3>
-      <form
-        action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
-        method="post"
-      >
-        <label for="select-date">Select date to view available rooms:</label>
-        <input
-          type="date"
-          id="select-date"
-          name="trip-date"
-          value="yyyy-MM-dd"
-          min="2020-01-01"
-          max="2022-12-31"
-        />
-      </form>
-      <input type="submit" value="Submit" id="date-submit" />
-      <ul class="available-rooms"></ul>
-      <div class="booking-form"></div>
-    </div>
+        <h3>New Booking</h3>
+        <form action="" method="GET" class="date-form">
+          <label for="select-date">Select date to view available rooms:</label>
+          <input
+            type="date"
+            id="select-date"
+            class="date-field"
+            name="trip-date"
+            value="yyyy-MM-dd"
+            min="2020-01-01"
+            max="2022-12-31"
+          />
+          <button type="button" class="date-submit">Search Rooms</button>
+
+          <label for="room-filter">Choose a room type:</label>
+          <select name="room-type" id="room-filter">
+            <option value="">-Please choose room type-</option>
+            <option value="single room">Single Room</option>
+            <option value="junior suite">Junior Suite</option>
+            <option value="suite">Suite</option>
+            <option value="residential suite">Residential Suite</option>
+          </select>
+          <button type="button" class="filter-submit">Filter Rooms</button>
+        </form>
+        <ul class="available-rooms"></ul>
+
+        <div class="booking-form">
+          <form
+            action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
+            method="POST"
+            class="booking-form"
+          >
+            <label for="ID-input">Enter Guest ID</label>
+            <input
+              type="number"
+              name="guestID"
+              id="ID-input"
+              class="form-field"
+              placeholder="Guest ID"
+              required
+            />
+            <label for="date-input">Confirm Date</label>
+            <input
+              type="date"
+              name="guestID"
+              id="date-input"
+              class="date-field"
+              value="yyyy-MM-dd"
+              min="2020-01-01"
+              max="2022-12-31"
+              required
+            />
+            <label for="room-input">Room Number</label>
+            <input
+              type="number"
+              name="room-number"
+              id="room-input"
+              class="form-field"
+              placeholder="room number"
+              required
+            />
+            <button type="button" class="book-room-submit">
+              Book This Room
+            </button>
+          </form>
+        </div>
+      </div>
       <button type="button" class="logout">Logout</button>
     </section>
   </body>

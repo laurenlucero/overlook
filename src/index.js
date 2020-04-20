@@ -153,7 +153,7 @@ $(".new-booking-btn").on("click", e => {
   domUpdates.displayBookingPage();
 });
 
-$("#date-submit").on("click", e => {
+$(".date-submit").on("click", e => {
   let date = $("#select-date")
     .val()
     .split("-")
@@ -175,7 +175,24 @@ $("#date-submit").on("click", e => {
   });
 });
 
-// display available rooms and book room button
+$(".filter-submit").on("click", e => {
+  let type = $("#room-filter").val();
+  console.log(type);
+  let filteredRooms = hotel.filterRoomsByType(type);
+  console.log(filteredRooms);
+  $(".available-rooms").html("")
+  return filteredRooms.map(room => {
+    $(".available-rooms").append(
+      `<li>Room Number: ${room.number}</br>
+          Room Type: ${room.roomType}</br>
+          Bed Size: ${room.bedSize}</br>
+          Number of Beds: ${room.numBeds}</br>
+          Cost Per Night: ${room.costPerNight}</li>
+          <button type="button" class="book-room-btn">Book Room</button>`
+    );
+  });
+});
+
 // filter rooms by room type with hotel.filterRoomsByType(type)
 // book room button takes users to form to book room - form takes userID, date and roomNumber to book
 // use manager.bookRoom method to select room and post data

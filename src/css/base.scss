@@ -90,7 +90,7 @@ li {
   }
 }
 
-button, #date-submit {
+button {
   @include box-shadow;
   @include border;
   @include button;
