@@ -17,9 +17,8 @@ class Guest {
 
   findBookings() {
     // find any bookings past/present or upcoming
-    let guestBookings = this.bookings.filter(
-      booking => booking.userID === this.id
-    );
+    let guestBookings = this.bookings
+    .filter(booking => booking.userID === this.id);
     return guestBookings;
   }
 

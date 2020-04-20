@@ -56,7 +56,7 @@ h1, #login-header {
   padding: .5em;
 }
 
-h2, label {
+h2, label, li {
   padding: .3em;
 }
 
@@ -117,7 +117,6 @@ h2, label {
   @include border;
   background-color: $light;
   margin: 1em;
-  width: 75%
 }
 
 

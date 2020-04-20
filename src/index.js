@@ -107,11 +107,17 @@ const instantiateGuest = () => {
 
 const displayGuestBookings = () => {
   let myBookings = guest.findBookings();
-  return myBookings.map(booking => {
-    $(".my-bookings").html(
-      `<li>Date: ${booking.date}, Room: ${booking.roomNumber}</li>`
-    );
-  });
+  return myBookings
+    .sort(function(a, b) {
+      if (a.date > b.date) return 1;
+      if (a.date < b.date) return -1;
+      return 0;
+    })
+    .map(booking => {
+      $(".my-bookings").append(
+        `<li>Date: ${booking.date}, Room: ${booking.roomNumber}</li>`
+      );
+    });
 };
 
 const displayGuestSpending = () => {
@@ -120,18 +126,28 @@ const displayGuestSpending = () => {
 };
 
 const displayRoomsAvailableToday = () => {
-  let roomsAvailableToday = hotel.getAvailableRoomsByDate(today, roomData, bookingData)
+  let roomsAvailableToday = hotel.getAvailableRoomsByDate(
+    today,
+    roomData,
+    bookingData
+  );
   console.log(roomsAvailableToday);
-  // $(".rooms-available")
-}
+  return roomsAvailableToday.map(room => {
+    $(".rooms-available").append(
+      `<li>Room Number: ${room.number}</br>
+      Room Type: ${room.roomType}</br>
+      Bed Size: ${room.bedSize}</br>
+      Number of Beds: ${room.numBeds}</br>
+      Cost Per Night: ${room.costPerNight}</li>`
+    );
+  });
+};
 
 const displayPercentOccupiedToday = () => {
-  $(".rooms-occupied").text(manager.calculatePercentOccupiedToday(
-    bookingData,
-    roomData,
-    today
-  ))
-}
+  $(".rooms-occupied").text(
+    manager.calculatePercentOccupiedToday(bookingData, roomData, today)
+  );
+};
 
 const displayTodaysRevenue = () => {
   $(".revenue").text(
