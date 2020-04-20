@@ -11,6 +11,8 @@ import domUpdates from "./domUpdates";
 // imported images
 import "./images/background.png";
 
+// event listenters
+
 // global variables
 let guestData;
 let roomData;
@@ -20,10 +22,6 @@ let manager;
 let guest;
 let usernameID;
 let today = "2020/02/04";
-
-// event listenters
-
-// fetch data
 
 let getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
@@ -54,10 +52,7 @@ Promise.all([getGuests, getRooms, getBookings])
     hotel.getTodaysDate();
   })
   .catch(error => console.error("promise error"));
-// post data
-// delete data
 
-// instantiateGuest()
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
@@ -131,7 +126,6 @@ const displayRoomsAvailableToday = () => {
     roomData,
     bookingData
   );
-  console.log(roomsAvailableToday);
   return roomsAvailableToday.map(room => {
     $(".rooms-available").append(
       `<li>Room Number: ${room.number}</br>

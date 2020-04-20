@@ -21,25 +21,6 @@ let domUpdates = {
     $(".manager-dashboard").addClass("hide");
   },
 
-  // displayGuestSpending() {
-  //   let total = guest.calculateTotalSpending(roomData);
-  //   $(".spending").test(total.toFixed(2));
-  // },
-
-  displayRoomsAvailableToday() {
-    // manager
-  },
-
-  displayTotalRevenueToday() {
-    // manager
-  },
-
-  displayPercentOccupiedToday() {
-    // manager
-  },
-
-  displayGuestBookings() {},
-
   displayNoRoomsAvailable() {
     // guest and manager
     // In the event that no rooms are available for the date/roomType selected,

@@ -31,16 +31,21 @@ describe("Hotel", function() {
 
   it("should get todays date", function() {
     hotel.getTodaysDate();
-    expect(hotel.date).to.equal(new Date().toISOString().slice(0, 10).split("-").join("/"));
+    expect(hotel.date).to.equal(
+      new Date()
+        .toISOString()
+        .slice(0, 10)
+        .split("-")
+        .join("/")
+    );
   });
 
-  it('should be able to get current logged in user', () => {
-  expect(hotel.getCurrentUser(1)).to.deep.equal(
-    {
+  it("should be able to get current logged in user", () => {
+    expect(hotel.getCurrentUser(1)).to.deep.equal({
       id: 1,
       name: "Leatha Ullrich"
-    })
-})
+    });
+  });
 
   it("should filter the room by type", function() {
     expect(hotel.filterRoomsByType("junior suite")).to.deep.equal([

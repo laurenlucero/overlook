@@ -14,7 +14,7 @@ class Hotel {
   getCurrentUser(id) {
     let currentUser = this.guests.find(guest => guest.id === id);
     return currentUser;
-}
+  }
 
   filterRoomsByType(type) {
     let filteredRooms = this.rooms.filter(room => type === room.roomType);
