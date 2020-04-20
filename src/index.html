@@ -17,21 +17,23 @@
 
     <section id="login-holder" class="login-dashboard">
       <h2 id="login-header">Bienvenida</h2>
-      <p>Please login to view rooms & bookings</p>
-      <form id="login-form">
+      <label for="login-form">Please login to view rooms & bookings</label>
+      <form action="" method="get" id="login-form">
+<label for="username-field">Enter username</label>
         <input
           type="text"
           name="username"
           id="username-field"
           class="login-form-field"
-          placeholder="Username"
+          placeholder="username"
         />
+        <label for="password-field">Enter password</label>
         <input
           type="password"
           name="password"
           id="password-field"
           class="login-form-field"
-          placeholder="Password"
+          placeholder="password"
         />
         <p id="login-error-msg">Invalid username and / or password</p>
         <input type="submit" value="Login" id="login-form-submit" />
@@ -55,7 +57,6 @@
           aria-label="Search site"
         />
         <button type="button" id="search-btn">Search</button>
-        <button type="button" class="logout">Logout</button>
       </div>
 
       <div class="dashboard-section">
@@ -90,6 +91,7 @@
           />
         </form>
       </div>
+      <button type="button" class="logout">Logout</button>
     </section>
 
     <section class="guest-dashboard hide">
@@ -98,7 +100,6 @@
           Welcome, <span class="guest-name"></span>! Today is
           <span class="today-date"></span>.
         </h2>
-        <button type="button" class="logout">Logout</button>
       </div>
 
       <div class="dashboard-section">
@@ -112,6 +113,7 @@
         <p class="spending"></p>
       </div>
       <!-- new booking -->
+      <button type="button" class="logout">Logout</button>
     </section>
   </body>
 </html>

@@ -17,7 +17,7 @@
 
 @mixin button {
   background-color: $orange;
-  color: $light;
+  color: $dark;
   font-weight: bold;
   font-size: 1em;
   padding: 0.5em;
@@ -56,9 +56,10 @@ h1, #login-header {
   padding: .5em;
 }
 
-h2, p {
-  padding: .5em;
+h2, label {
+  padding: .3em;
 }
+
 
 #login-holder {
   @include flex-display;
