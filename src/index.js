@@ -79,19 +79,8 @@ $(".logout-btn").on("click", e => {
 // display new booking page
 $(".new-booking-btn").on("click", e => {
   domUpdates.displayBookingPage();
-  domUpdates.hideMainButtons();
+  // domUpdates.hideMainButtons();
 });
-
-// return to main dashboard
-// $(".back-btn").on("click", e => {
-//   if ($(".manager-name").text() === "Lauren") {
-//     domUpdates.displayManagerDashSections();
-//     domUpdates.hideBackButton();
-//   } else {
-//     domUpdates.displayGuestDashSections();
-//     domUpdates.hideBackButton();
-//   }
-// });
 
 // display available rooms by date
 $(".date-submit").on("click", e => {
@@ -104,7 +93,7 @@ $(".date-submit").on("click", e => {
     roomData,
     bookingData
   );
-  if (availableRooms.length === 0) {
+  if (availableRooms.length == 0) {
     domUpdates.displayNoRoomsAvailable();
   } else {
     $(".available-rooms").html("");
@@ -182,6 +171,17 @@ $(".delete-booking").on("click", e => {
   let id = $("#bookingID-input").val();
   hotel.deleteBooking(id);
   domUpdates.displayDeleteSuccessMsg();
+});
+
+// back to Main
+$(".back-to-main").on("click", e => {
+  if ($(".manager-name").text() === "Lauren") {
+    domUpdates.displayManagerDashSections();
+    domUpdates.hideBookingPage();
+  } else {
+    domUpdates.displayGuestDashSections();
+    domUpdates.hideBookingPage();
+  }
 });
 
 // functions //

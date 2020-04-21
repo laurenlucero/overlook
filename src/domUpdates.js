@@ -27,6 +27,10 @@ let domUpdates = {
     $(".guest-dashboard-sections").addClass("hide");
   },
 
+  hideBookingPage() {
+    $(".booking-page").addClass("hide");
+  },
+
   displayManagerDashSections() {
     $(".manager-dashboard-sections").removeClass("hide");
   },
@@ -57,10 +61,6 @@ let domUpdates = {
   hideMainButtons() {
     $(".new-booking-btn").addClass("hide");
     $(".logout-btn").addClass("hide");
-  },
-
-  hideBackButton() {
-    $(".back-btn").addClass("hide");
   }
 };
 
