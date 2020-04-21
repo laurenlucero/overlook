@@ -2,7 +2,6 @@
 const chai = require("chai");
 const expect = chai.expect;
 
-import mockGuestData from "./mock-guest-data";
 import mockRoomData from "./mock-room-data";
 import Guest from "../src/Guest";
 

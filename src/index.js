@@ -96,7 +96,7 @@ $(".date-submit").on("click", e => {
     roomData,
     bookingData
   );
-  if (availableRooms.length == 0) {
+  if (availableRooms.length === 0) {
     domUpdates.displayNoRoomsMessage();
   } else {
     $(".available-rooms").html("");

@@ -54,7 +54,7 @@ class Hotel {
       body: JSON.stringify(bookingObject)
     })
       .then(response => console.log(response.json()))
-      .catch(err => console.error("booking error"));
+      .catch(error => console.error("booking error"));
   }
 
   // TBT

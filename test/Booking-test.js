@@ -1,7 +1,6 @@
 import chai from "chai";
 const expect = chai.expect;
 
-import mockBookingData from "./mock-booking-data";
 import Booking from "../src/Booking";
 
 describe("Booking", function() {

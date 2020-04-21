@@ -31,13 +31,13 @@ class Manager {
   }
 
   searchGuest(guestName, guestData, bookingData, roomData) {
-    let guest = guestData.find(guest => guestName == guest.name);
+    let guest = guestData.find(guest => guestName === guest.name);
     let guestBookings = bookingData.filter(
       booking => booking.userID === guest.id
     );
     let amountSpent = guestBookings.reduce((total, booking) => {
       roomData.forEach(room => {
-        if (booking.roomNumber == room.number) {
+        if (booking.roomNumber === room.number) {
           total += room.costPerNight;
         }
       });
