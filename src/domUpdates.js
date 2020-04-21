@@ -55,12 +55,16 @@ let domUpdates = {
   },
 
   displayDeleteSuccessMsg() {
-    $(".success").text(`You have deleted this booking.`)
+    $(".success").text(`You have deleted this booking.`);
   },
 
   hideMainButtons() {
     $(".new-booking-btn").addClass("hide");
     $(".logout-btn").addClass("hide");
+  },
+
+  hideGuestInfo() {
+    $(".guest-info").addClass("hide");
   }
 };
 

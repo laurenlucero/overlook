@@ -173,6 +173,11 @@ $(".delete-booking").on("click", e => {
   domUpdates.displayDeleteSuccessMsg();
 });
 
+// close searched guest info
+$(".close-guest-info").on("click", e => {
+  domUpdates.hideGuestInfo();
+});
+
 // back to Main
 $(".back-to-main").on("click", e => {
   if ($(".manager-name").text() === "Lauren") {
