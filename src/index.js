@@ -177,6 +177,13 @@ $("#search-btn").on("click", e => {
     });
 });
 
+// delete booking
+$(".delete-booking").on("click", e => {
+  let id = $("#bookingID-input").val();
+  hotel.deleteBooking(id);
+  domUpdates.displayDeleteSuccessMsg();
+});
+
 // functions //
 const instantiateManager = () => {
   manager = new Manager(1, "Lauren");

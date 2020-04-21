@@ -50,6 +50,10 @@ let domUpdates = {
     $(".guest-info").removeClass("hide");
   },
 
+  displayDeleteSuccessMsg() {
+    $(".success").text(`You have deleted this booking.`)
+  },
+
   hideMainButtons() {
     $(".new-booking-btn").addClass("hide");
     $(".logout-btn").addClass("hide");
