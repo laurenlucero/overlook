@@ -26,10 +26,14 @@ let domUpdates = {
     $(".dashboard-sections").addClass("hide");
   },
 
-  displayNoRoomsAvailable() {
-    // guest and manager
-    // In the event that no rooms are available for the date/roomType selected,
-    // display a message fiercely apologizing to the user and asking them to adjust their room search
+  displayConfirmationMessage() {
+    $(".confirmation").text(`Thank you for booking a room!`);
+  },
+
+  displayNoRoomsMessage() {
+    $(".available-rooms").append(
+      `<p>Sorry, there are no rooms of this type available on this day. Please search another type or day.</p>`
+    );
   }
 };
 
