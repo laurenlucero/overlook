@@ -17,7 +17,6 @@ let guest;
 let usernameID;
 let today = "2020/02/04";
 
-// fetch data //
 let getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
 )
@@ -98,8 +97,8 @@ $(".date-submit").on("click", e => {
           Room Type: ${room.roomType}<br>
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
-          Cost Per Night: ${room.costPerNight}</li>
-          <button type="button" class="book-room-btn">Book Room</button>`
+          Cost Per Night: ${room.costPerNight}</li>`
+        // <button type="button" class="book-room-btn">Book Room</button>
       );
     });
   }
@@ -118,8 +117,8 @@ $(".filter-submit").on("click", e => {
           Room Type: ${room.roomType}<br>
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
-          Cost Per Night: ${room.costPerNight}</li>
-          <button type="button" class="book-room-btn">Book Room</button>`
+          Cost Per Night: ${room.costPerNight}</li>`
+        // <button type="button" class="book-room-btn">Book Room</button>
       );
     });
   }
@@ -134,6 +133,29 @@ $(".book-room-submit").on("click", e => {
   let roomNumber = $("#room-input").val();
   hotel.bookRoom(userID, date, roomNumber);
   domUpdates.displayConfirmationMessage();
+});
+
+$("#search-btn").on("click", e => {
+  let guestName = $("#site-search").val();
+  let guestInfo = manager.searchGuest(
+    guestName,
+    guestData,
+    bookingData,
+    roomData
+  );
+  domUpdates.displaySearchedGuestInfo();
+  $(".guest-spending").html(`Total Spending: ${guestInfo.spending}`);
+  return guestInfo.bookings
+    .sort(function(a, b) {
+      if (a.date > b.date) return 1;
+      if (a.date < b.date) return -1;
+      return 0;
+    })
+    .map(booking => {
+      $(".guest-bookings").append(`<li>Booking ID: ${booking.id}<br>
+      Date: ${booking.date}<br>
+      Room Number: ${booking.roomNumber}</li>`);
+    });
 });
 
 // functions //

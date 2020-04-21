@@ -34,6 +34,11 @@ let domUpdates = {
     $(".available-rooms").append(
       `<p>Sorry, there are no rooms of this type available on this day. Please search another type or day.</p>`
     );
+  },
+
+  displaySearchedGuestInfo() {
+    $(".dashboard-sections").html("");
+    $(".guest-info").removeClass("hide");
   }
 };
 

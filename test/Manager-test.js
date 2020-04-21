@@ -40,6 +40,17 @@ describe("Manager", function() {
     ).to.equal(840.41);
   });
 
+  it("should calculate the percentage of rooms occupied for todays date", function() {
+    let todaysDate = "2020/02/03";
+    expect(
+      manager.calculatePercentOccupiedToday(
+        mockBookingData,
+        mockRoomData,
+        todaysDate
+      )
+    ).to.equal(12);
+  });
+
   it("should search guests by name to view bookings and spending", function() {
     expect(
       manager.searchGuest(
@@ -60,16 +71,5 @@ describe("Manager", function() {
       ],
       spending: 172.09
     });
-  });
-
-  it("should calculate the percentage of rooms occupied for todays date", function() {
-    let todaysDate = "2020/02/03";
-    expect(
-      manager.calculatePercentOccupiedToday(
-        mockBookingData,
-        mockRoomData,
-        todaysDate
-      )
-    ).to.equal(12);
   });
 });
