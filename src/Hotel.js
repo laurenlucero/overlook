@@ -36,6 +36,25 @@ class Hotel {
     });
     return roomsAvailable;
   }
+
+  bookRoom(userID, date, roomNumber) {
+    let bookingObject = {
+      userID: Number(userID),
+      date: date,
+      roomNumber: Number(roomNumber)
+    };
+    let url =
+      "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
+    return fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(bookingObject)
+    })
+      .then(response => console.log(response.json()))
+      .catch(err => console.error(err.message));
+  }
 }
 
 export default Hotel;

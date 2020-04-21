@@ -195,10 +195,9 @@ $(".book-room-submit").on("click", e => {
   let userID = $("#ID-input").val();
   let date = $("#date-input").val().split("-").join("/");
   let roomNumber = $("#room-input").val();
-  manager.bookRoom(userID, date, roomNumber);
+  hotel.bookRoom(userID, date, roomNumber);
 });
 
-// filter rooms by room type with hotel.filterRoomsByType(type)
-// book room button takes users to form to book room - form takes userID, date and roomNumber to book
+
 // use manager.bookRoom method to select room and post data
 // if no rooms / roomtype available, display apology message
