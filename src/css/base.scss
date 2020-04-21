@@ -1,32 +1,5 @@
-/* mixins */
-@mixin flex-display {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@mixin box-shadow {
-  box-shadow: 0px 0px 2px 2px $dark;
-}
-
-@mixin border {
-  border: none;
-  border-radius: 0.2em;
-}
-
-@mixin button {
-  background-color: $orange;
-  color: $dark;
-  font-size: 1em;
-  padding: 0.4em;
-}
-
-/* variables */
-$orange: #e4a516;
-$light-orange: #f5dda8;
-$dark: #1c1503;
-$light: #fcf4e2;
+@import "_mixins";
+@import "_variables";
 
 *,
 *:after,
