@@ -6,8 +6,8 @@ class Guest {
     this.id = guestData.id;
     this.name = guestData.name;
     this.bookings = bookingData;
-    this.username = `customer${guestData.id}`
-    this.password = 'overlook2020';
+    this.username = `customer${guestData.id}`;
+    this.password = "overlook2020";
   }
 
   getFirstName() {
@@ -16,14 +16,13 @@ class Guest {
   }
 
   findBookings() {
-    // find any bookings past/present or upcoming
-    let guestBookings = this.bookings
-    .filter(booking => booking.userID === this.id);
+    let guestBookings = this.bookings.filter(
+      booking => booking.userID === this.id
+    );
     return guestBookings;
   }
 
   calculateTotalSpending(roomData) {
-    // get total amount spent on rooms
     return this.bookings
       .map(booking => {
         let cost;
@@ -40,7 +39,7 @@ class Guest {
       }, 0);
   }
 
-// TBT (To Be Tested) bookRoom method
+  // TBT (To Be Tested)
   bookRoom() {
     let bookingObject = {
       userID: Number(userID),

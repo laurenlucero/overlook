@@ -1,17 +1,13 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
+//imports //
 import $ from "jquery";
 import "./css/base.scss";
 import Hotel from "./Hotel";
 import Manager from "./Manager";
 import Guest from "./Guest";
 import domUpdates from "./domUpdates";
-
-// imported images
 import "./images/background.png";
 
-// global variables
+// global variables //
 let guestData;
 let roomData;
 let bookingData;
@@ -21,10 +17,7 @@ let guest;
 let usernameID;
 let today = "2020/02/04";
 
-// event listenters
-
-// fetch data
-
+// fetch data //
 let getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
 )
@@ -54,10 +47,8 @@ Promise.all([getGuests, getRooms, getBookings])
     hotel.getTodaysDate();
   })
   .catch(error => console.error("promise error"));
-// post data
-// delete data
 
-// instantiateGuest()
+// event listeners //
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
@@ -84,6 +75,68 @@ $(".logout").on("click", e => {
   location.reload();
 });
 
+$(".new-booking-btn").on("click", e => {
+  domUpdates.displayBookingPage();
+});
+
+$(".date-submit").on("click", e => {
+  let date = $("#select-date")
+    .val()
+    .split("-")
+    .join("/");
+  let availableRooms = hotel.getAvailableRoomsByDate(
+    date,
+    roomData,
+    bookingData
+  );
+  if (availableRooms.length === 0) {
+    domUpdates.displayNoRoomsAvailable();
+  } else {
+    return availableRooms.map(room => {
+      $(".available-rooms").append(
+        `<li>Room Number: ${room.number}<br>
+          Room Type: ${room.roomType}<br>
+          Bed Size: ${room.bedSize}<br>
+          Number of Beds: ${room.numBeds}<br>
+          Cost Per Night: ${room.costPerNight}</li>
+          <button type="button" class="book-room-btn">Book Room</button>`
+      );
+    });
+  }
+});
+
+$(".filter-submit").on("click", e => {
+  let type = $("#room-filter").val();
+  let filteredRooms = hotel.filterRoomsByType(type);
+  if (filteredRooms.length === 0) {
+    domUpdates.displayNoRoomsAvailable();
+  } else {
+    $(".available-rooms").html("");
+    return filteredRooms.map(room => {
+      $(".available-rooms").append(
+        `<li>Room Number: ${room.number}<br>
+          Room Type: ${room.roomType}<br>
+          Bed Size: ${room.bedSize}<br>
+          Number of Beds: ${room.numBeds}<br>
+          Cost Per Night: ${room.costPerNight}</li>
+          <button type="button" class="book-room-btn">Book Room</button>`
+      );
+    });
+  }
+});
+
+$(".book-room-submit").on("click", e => {
+  let userID = $("#ID-input").val();
+  let date = $("#date-input")
+    .val()
+    .split("-")
+    .join("/");
+  let roomNumber = $("#room-input").val();
+  hotel.bookRoom(userID, date, roomNumber);
+  domUpdates.displayConfirmationMessage();
+});
+
+// functions //
 const instantiateManager = () => {
   manager = new Manager(1, "Lauren");
   $(".manager-name").text(`${manager.name}`);
@@ -131,7 +184,6 @@ const displayRoomsAvailableToday = () => {
     roomData,
     bookingData
   );
-  console.log(roomsAvailableToday);
   return roomsAvailableToday.map(room => {
     $(".rooms-available").append(
       `<li>Room Number: ${room.number}</br>

@@ -67,7 +67,7 @@ class Manager {
       body: JSON.stringify(bookingObject)
     })
       .then(response => console.log(response.json()))
-      .catch(err => console.log(err.message));
+      .catch(err => console.error(err.message));
   }
 
   // TBT

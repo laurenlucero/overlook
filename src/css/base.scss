@@ -1,9 +1,9 @@
 // mixins
 @mixin flex-display {
+  align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 @mixin box-shadow {
@@ -18,7 +18,6 @@
 @mixin button {
   background-color: $orange;
   color: $dark;
-  font-weight: bold;
   font-size: 1em;
   padding: 0.5em;
 }
@@ -28,8 +27,6 @@ $orange: #e4a516;
 $light-orange: #f5dda8;
 $dark: #1c1503;
 $light: #fcf4e2;
-$deep-green: #085517;
-$bright-green: #b0ee6d;
 
 *,
 *:after,
@@ -51,15 +48,17 @@ body {
   font-family: "Muli", sans-serif;
 }
 
-h1, #login-header {
+h1,
+#login-header {
   font-family: "Righteous", cursive;
-  padding: .5em;
+  padding: 0.5em;
 }
 
-h2, label, li {
-  padding: .3em;
+h2,
+label,
+li {
+  padding: 0.3em;
 }
-
 
 #login-holder {
   @include flex-display;
@@ -86,22 +85,22 @@ h2, label, li {
       @include box-shadow;
       @include border;
       @include button;
-      margin-bottom: .5em;
+      margin-bottom: 0.5em;
     }
   }
 }
 
-#search-btn, .logout {
+button {
   @include box-shadow;
   @include border;
   @include button;
-  margin: .5em;
+  margin: 0.5em;
 }
 
 .login-form-field {
   @include border;
-  color: $dark;
   border-bottom: 0.1em solid $dark;
+  color: $dark;
   margin: 0.5em;
   outline: none;
   padding: 1em;
@@ -118,7 +117,6 @@ h2, label, li {
   background-color: $light;
   margin: 1em;
 }
-
 
 .hide {
   display: none;

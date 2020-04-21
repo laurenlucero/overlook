@@ -21,29 +21,19 @@ let domUpdates = {
     $(".manager-dashboard").addClass("hide");
   },
 
-  // displayGuestSpending() {
-  //   let total = guest.calculateTotalSpending(roomData);
-  //   $(".spending").test(total.toFixed(2));
-  // },
-
-  displayRoomsAvailableToday() {
-    // manager
+  displayBookingPage() {
+    $(".booking-page").removeClass("hide");
+    $(".dashboard-sections").addClass("hide");
   },
 
-  displayTotalRevenueToday() {
-    // manager
+  displayConfirmationMessage() {
+    $(".confirmation").text(`Thank you for booking a room!`);
   },
 
-  displayPercentOccupiedToday() {
-    // manager
-  },
-
-  displayGuestBookings() {},
-
-  displayNoRoomsAvailable() {
-    // guest and manager
-    // In the event that no rooms are available for the date/roomType selected,
-    // display a message fiercely apologizing to the user and asking them to adjust their room search
+  displayNoRoomsMessage() {
+    $(".available-rooms").append(
+      `<p>Sorry, there are no rooms of this type available on this day. Please search another type or day.</p>`
+    );
   }
 };
 
