@@ -69,14 +69,26 @@ $("#login-form-submit").on("click", e => {
   }
 });
 
-$(".logout").on("click", e => {
+$(".logout-btn").on("click", e => {
   domUpdates.logout();
   location.reload();
 });
 
 $(".new-booking-btn").on("click", e => {
   domUpdates.displayBookingPage();
+  domUpdates.hideMainButtons();
+  // domUpdates.showBackButton();
 });
+
+// $(".back-btn").on("click", e => {
+//   if ($(".manager-name").text("Lauren")) {
+//     domUpdates.displayManagerDashSections();
+//     domUpdates.hideBackButton();
+//   } else {
+//     domUpdates.displayGuestDashSections();
+//     domUpdates.hideBackButton();
+//   }
+// });
 
 $(".date-submit").on("click", e => {
   let date = $("#select-date")
@@ -98,7 +110,6 @@ $(".date-submit").on("click", e => {
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
           Cost Per Night: ${room.costPerNight}</li>`
-        // <button type="button" class="book-room-btn">Book Room</button>
       );
     });
   }
@@ -118,7 +129,6 @@ $(".filter-submit").on("click", e => {
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
           Cost Per Night: ${room.costPerNight}</li>`
-        // <button type="button" class="book-room-btn">Book Room</button>
       );
     });
   }

@@ -23,8 +23,17 @@ let domUpdates = {
 
   displayBookingPage() {
     $(".booking-page").removeClass("hide");
-    $(".dashboard-sections").addClass("hide");
+    $(".manager-dashboard-sections").addClass("hide");
+    $(".guest-dashboard-sections").addClass("hide");
   },
+
+  // displayManagerDashSections() {
+  //   $(".manager-dashboard-sections").removeClass("hide");
+  // },
+  //
+  // displayGuestDashSections() {
+  //   $(".guest-dashboard-sections").removeClass("hide");
+  // },
 
   displayConfirmationMessage() {
     $(".confirmation").text(`Thank you for booking a room!`);
@@ -39,6 +48,15 @@ let domUpdates = {
   displaySearchedGuestInfo() {
     $(".dashboard-sections").html("");
     $(".guest-info").removeClass("hide");
+  },
+
+  hideMainButtons() {
+    $(".new-booking-btn").addClass("hide");
+    $(".logout-btn").addClass("hide");
+  },
+
+  hideBackButton() {
+    $(".back-btn").addClass("hide");
   }
 };
 
