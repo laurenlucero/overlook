@@ -24,7 +24,7 @@
           type="text"
           name="username"
           id="username-field"
-          class="login-form-field"
+          class="form-field"
           placeholder="username"
           required
         />
@@ -33,12 +33,12 @@
           type="password"
           name="password"
           id="password-field"
-          class="login-form-field"
+          class="form-field"
           placeholder="password"
           required
         />
-        <p id="login-error-msg">Invalid username and / or password</p>
-        <input type="submit" value="Login" id="login-form-submit" />
+        <p id="login-error-msg">Invalid username and/or password</p>
+        <input type="submit" value="Login" id="login-form-submit" aria-label="Login" />
       </form>
     </section>
 
@@ -55,8 +55,10 @@
         <input
           type="search"
           id="site-search"
-          name="q"
+          class="form-field"
           aria-label="Search site"
+          placeholder="first & last name"
+          required
         />
         <button type="button" id="search-btn">Search</button>
         <div class="dashboard-section guest-info hide">
@@ -68,7 +70,7 @@
             method="POST"
             class="booking-form"
           >
-            <label for="bookingID-input">Enter Booking ID to Delete</label>
+            <label for="bookingID-input">Enter Booking ID to Delete Booking:</label>
             <input
               type="text"
               name="guestID"
@@ -90,16 +92,19 @@
         </div>
 
         <div class="dashboard-section">
-          <h3>Revenue</h3>
-          <p class="revenue"></p>
+          <h3>Today's Revenue</h3>
+          <p class="revenue">$</p>
         </div>
 
         <div class="dashboard-section">
           <h3>Rooms Available</h3>
           <ul class="rooms-available"></ul>
         </div>
+
+        <div class="nav-btns">
         <button type="button" class="new-booking-btn">New Booking</button>
         <button type="button" class="logout-btn">Logout</button>
+      </div>
       </section>
     </section>
 
@@ -134,16 +139,17 @@
           <input
             type="date"
             id="select-date"
-            class="date-field"
+            class="form-field"
             name="trip-date"
             value="yyyy-MM-dd"
-            min="2020-01-01"
+            min="2020-04-01"
             max="2022-12-31"
+            required
           />
           <button type="button" class="date-submit">Search Rooms</button>
 
           <label for="room-filter">Choose a room type:</label>
-          <select name="room-type" id="room-filter">
+          <select name="room-type" id="room-filter" class="form-field">
             <option value="">-Please choose room type-</option>
             <option value="single room">Single Room</option>
             <option value="junior suite">Junior Suite</option>
@@ -155,10 +161,12 @@
         <ul class="available-rooms"></ul>
 
         <div class="booking-form">
+          <label for="booking-form">Complete form to book a room:</label>
           <form
             action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
             method="POST"
             class="booking-form"
+            id="booking-form"
           >
             <label for="ID-input">Enter Guest ID</label>
             <input
@@ -176,7 +184,7 @@
               id="date-input"
               class="form-field"
               value="yyyy-MM-dd"
-              min="2020-01-01"
+              min="2020-04-01"
               max="2022-12-31"
               required
             />

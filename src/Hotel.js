@@ -54,7 +54,7 @@ class Hotel {
       body: JSON.stringify(bookingObject)
     })
       .then(response => console.log(response.json()))
-      .catch(err => console.error(err.message));
+      .catch(err => console.error("booking error"));
   }
 
   // TBT
@@ -68,7 +68,7 @@ class Hotel {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(deleteBookingObject)
-    }).catch(error => console.log(err.message));
+    }).catch(error => console.error("delete error"));
   }
 }
 

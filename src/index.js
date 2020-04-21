@@ -1,4 +1,4 @@
-//imports //
+// imports //
 import $ from "jquery";
 import "./css/base.scss";
 import Hotel from "./Hotel";
@@ -15,7 +15,11 @@ let hotel;
 let manager;
 let guest;
 let usernameID;
-let today = "2020/02/04";
+let today = new Date()
+  .toISOString()
+  .slice(0, 10)
+  .split("-")
+  .join("/");
 
 let getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
@@ -79,7 +83,6 @@ $(".logout-btn").on("click", e => {
 // display new booking page
 $(".new-booking-btn").on("click", e => {
   domUpdates.displayBookingPage();
-  // domUpdates.hideMainButtons();
 });
 
 // display available rooms by date
@@ -94,7 +97,7 @@ $(".date-submit").on("click", e => {
     bookingData
   );
   if (availableRooms.length == 0) {
-    domUpdates.displayNoRoomsAvailable();
+    domUpdates.displayNoRoomsMessage();
   } else {
     $(".available-rooms").html("");
     return availableRooms.map(room => {
@@ -103,7 +106,7 @@ $(".date-submit").on("click", e => {
           Room Type: ${room.roomType}<br>
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
-          Cost Per Night: ${room.costPerNight}</li>`
+          Cost Per Night: $${room.costPerNight}</li>`
       );
     });
   }
@@ -123,7 +126,7 @@ $(".filter-submit").on("click", e => {
           Room Type: ${room.roomType}<br>
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
-          Cost Per Night: ${room.costPerNight}</li>`
+          Cost Per Night: $${room.costPerNight}</li>`
       );
     });
   }
@@ -151,7 +154,7 @@ $("#search-btn").on("click", e => {
     roomData
   );
   domUpdates.displaySearchedGuestInfo();
-  $(".guest-spending").html(`Total Spending: ${guestInfo.spending}`);
+  $(".guest-spending").html(`Total Spending: $${guestInfo.spending}`);
   $(".guest-bookings").html("");
   return guestInfo.bookings
     .sort(function(a, b) {
@@ -178,7 +181,7 @@ $(".close-guest-info").on("click", e => {
   domUpdates.hideGuestInfo();
 });
 
-// back to Main
+// back to main
 $(".back-to-main").on("click", e => {
   if ($(".manager-name").text() === "Lauren") {
     domUpdates.displayManagerDashSections();
@@ -243,7 +246,7 @@ const displayRoomsAvailableToday = () => {
       Room Type: ${room.roomType}</br>
       Bed Size: ${room.bedSize}</br>
       Number of Beds: ${room.numBeds}</br>
-      Cost Per Night: ${room.costPerNight}</li>`
+      Cost Per Night: $${room.costPerNight}</li>`
     );
   });
 };
@@ -255,7 +258,7 @@ const displayPercentOccupiedToday = () => {
 };
 
 const displayTodaysRevenue = () => {
-  $(".revenue").text(
+  $(".revenue").append(
     manager.calculateTodaysRevenue(bookingData, roomData, today)
   );
 };

@@ -27,7 +27,7 @@ class Manager {
     ).length;
     let percentageOfRoomsOccupiedToday =
       (numberOfBookingsToday / roomData.length) * 100;
-    return percentageOfRoomsOccupiedToday;
+    return Number(percentageOfRoomsOccupiedToday.toFixed(2));
   }
 
   searchGuest(guestName, guestData, bookingData, roomData) {
