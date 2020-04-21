@@ -18,13 +18,13 @@
     <section id="login-holder" class="login-dashboard">
       <h2 id="login-header">Bienvenida</h2>
       <label for="login-form">Please login to view rooms & bookings</label>
-      <form action="" method="get" id="login-form">
+      <form action="" method="POST" id="login-form">
         <label for="username-field">Enter username</label>
         <input
           type="text"
           name="username"
           id="username-field"
-          class="login-form-field"
+          class="form-field"
           placeholder="username"
           required
         />
@@ -33,12 +33,12 @@
           type="password"
           name="password"
           id="password-field"
-          class="login-form-field"
+          class="form-field"
           placeholder="password"
           required
         />
-        <p id="login-error-msg">Invalid username and / or password</p>
-        <input type="submit" value="Login" id="login-form-submit" />
+        <p id="login-error-msg">Invalid username and/or password</p>
+        <input type="submit" value="Login" id="login-form-submit" aria-label="Login" />
       </form>
     </section>
 
@@ -55,20 +55,45 @@
         <input
           type="search"
           id="site-search"
-          name="q"
+          class="form-field"
           aria-label="Search site"
+          placeholder="first & last name"
+          required
         />
         <button type="button" id="search-btn">Search</button>
+        <div class="dashboard-section guest-info hide">
+          <h3>Guest Information</h3>
+          <p class="guest-spending"></p>
+          <ul class="guest-bookings"></ul>
+          <form
+            action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
+            method="POST"
+            class="booking-form"
+          >
+            <label for="bookingID-input">Enter Booking ID to Delete Booking:</label>
+            <input
+              type="text"
+              name="guestID"
+              id="bookingID-input"
+              class="form-field"
+              placeholder="booking ID"
+              required
+            />
+            <button type="button" class="delete-booking">Delete Booking</button>
+          </form>
+          <p class="success"></p>
+          <button type="button" class="close-guest-info">Close</button>
+        </div>
       </div>
-      <section class="dashboard-sections">
+      <section class="manager-dashboard-sections">
         <div class="dashboard-section">
           <h3>Rooms Occupied</h3>
           <p><span class="rooms-occupied"></span>%</p>
         </div>
 
         <div class="dashboard-section">
-          <h3>Revenue</h3>
-          <p class="revenue"></p>
+          <h3>Today's Revenue</h3>
+          <p class="revenue">$</p>
         </div>
 
         <div class="dashboard-section">
@@ -76,8 +101,10 @@
           <ul class="rooms-available"></ul>
         </div>
 
+        <div class="nav-btns">
         <button type="button" class="new-booking-btn">New Booking</button>
-        <button type="button" class="logout">Logout</button>
+        <button type="button" class="logout-btn">Logout</button>
+      </div>
       </section>
     </section>
 
@@ -89,7 +116,7 @@
         </h2>
       </div>
 
-      <section class="dashboard-sections">
+      <section class="guest-dashboard-sections">
         <div class="dashboard-section">
           <h3>Spending</h3>
           <p class="spending"></p>
@@ -98,30 +125,31 @@
         <div class="dashboard-section">
           <h3>My Bookings</h3>
           <ul class="my-bookings"></ul>
-          <button type="button" class="new-booking-btn">New Booking</button>
         </div>
-        <button type="button" class="logout">Logout</button>
+        <button type="button" class="new-booking-btn">New Booking</button>
+        <button type="button" class="logout-btn">Logout</button>
       </section>
     </section>
 
     <section class="booking-page hide">
       <div class="dashboard-section">
         <h3>New Booking</h3>
-        <form action="" method="GET" class="date-form">
+        <form action="" method="POST" class="date-form">
           <label for="select-date">Select date to view available rooms:</label>
           <input
             type="date"
             id="select-date"
-            class="date-field"
+            class="form-field"
             name="trip-date"
             value="yyyy-MM-dd"
-            min="2020-01-01"
+            min="2020-04-01"
             max="2022-12-31"
+            required
           />
           <button type="button" class="date-submit">Search Rooms</button>
 
           <label for="room-filter">Choose a room type:</label>
-          <select name="room-type" id="room-filter">
+          <select name="room-type" id="room-filter" class="form-field">
             <option value="">-Please choose room type-</option>
             <option value="single room">Single Room</option>
             <option value="junior suite">Junior Suite</option>
@@ -133,10 +161,12 @@
         <ul class="available-rooms"></ul>
 
         <div class="booking-form">
+          <label for="booking-form">Complete form to book a room:</label>
           <form
             action="https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings"
             method="POST"
             class="booking-form"
+            id="booking-form"
           >
             <label for="ID-input">Enter Guest ID</label>
             <input
@@ -144,7 +174,7 @@
               name="guestID"
               id="ID-input"
               class="form-field"
-              placeholder="Guest ID"
+              placeholder="guest ID"
               required
             />
             <label for="date-input">Confirm Date</label>
@@ -154,7 +184,7 @@
               id="date-input"
               class="form-field"
               value="yyyy-MM-dd"
-              min="2020-01-01"
+              min="2020-04-01"
               max="2022-12-31"
               required
             />
@@ -168,13 +198,13 @@
               required
             />
             <button type="button" class="book-room-submit">
-              Book This Room
+              Book Room
             </button>
           </form>
           <p class="confirmation"></p>
+          <button type="button" class="back-to-main">Back to Main</button>
         </div>
       </div>
-      <button type="button" class="logout">Logout</button>
     </section>
   </body>
 </html>

@@ -1,32 +1,5 @@
-// mixins
-@mixin flex-display {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@mixin box-shadow {
-  box-shadow: 0px 0px 2px 2px $dark;
-}
-
-@mixin border {
-  border: none;
-  border-radius: 0.2em;
-}
-
-@mixin button {
-  background-color: $orange;
-  color: $dark;
-  font-size: 1em;
-  padding: 0.5em;
-}
-
-/* variables */
-$orange: #e4a516;
-$light-orange: #f5dda8;
-$dark: #1c1503;
-$light: #fcf4e2;
+@import "_mixins";
+@import "_variables";
 
 *,
 *:after,
@@ -38,6 +11,7 @@ $light: #fcf4e2;
 
 html {
   height: 100vh;
+  width: 100vw;
 }
 
 body {
@@ -54,10 +28,13 @@ h1,
   padding: 0.5em;
 }
 
-h2,
+h2 {
+  font-weight: bold;
+}
+
 label,
 li {
-  padding: 0.3em;
+  padding: 0.2em;
 }
 
 #login-holder {
@@ -97,14 +74,21 @@ button {
   margin: 0.5em;
 }
 
-.login-form-field {
+.nav-btns {
+  display: flex;
+  justify-content: space-around;
+}
+
+.form-field,
+option {
   @include border;
   border-bottom: 0.1em solid $dark;
   color: $dark;
   margin: 0.5em;
   outline: none;
   padding: 1em;
-  width: 70%;
+  width: fit-content;
+  font-family: "Muli", sans-serif;
   &::placeholder {
     color: $orange;
   }
@@ -116,6 +100,11 @@ button {
   @include border;
   background-color: $light;
   margin: 1em;
+}
+
+.date-form,
+.booking-form {
+  @include flex-display;
 }
 
 .hide {

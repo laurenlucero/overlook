@@ -23,7 +23,20 @@ let domUpdates = {
 
   displayBookingPage() {
     $(".booking-page").removeClass("hide");
-    $(".dashboard-sections").addClass("hide");
+    $(".manager-dashboard-sections").addClass("hide");
+    $(".guest-dashboard-sections").addClass("hide");
+  },
+
+  hideBookingPage() {
+    $(".booking-page").addClass("hide");
+  },
+
+  displayManagerDashSections() {
+    $(".manager-dashboard-sections").removeClass("hide");
+  },
+
+  displayGuestDashSections() {
+    $(".guest-dashboard-sections").removeClass("hide");
   },
 
   displayConfirmationMessage() {
@@ -34,6 +47,19 @@ let domUpdates = {
     $(".available-rooms").append(
       `<p>Sorry, there are no rooms of this type available on this day. Please search another type or day.</p>`
     );
+  },
+
+  displaySearchedGuestInfo() {
+    $(".dashboard-sections").html("");
+    $(".guest-info").removeClass("hide");
+  },
+
+  displayDeleteSuccessMsg() {
+    $(".success").text(`You have deleted this booking.`);
+  },
+
+  hideGuestInfo() {
+    $(".guest-info").addClass("hide");
   }
 };
 

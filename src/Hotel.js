@@ -37,6 +37,7 @@ class Hotel {
     return roomsAvailable;
   }
 
+  // TBT
   bookRoom(userID, date, roomNumber) {
     let bookingObject = {
       userID: Number(userID),
@@ -53,7 +54,21 @@ class Hotel {
       body: JSON.stringify(bookingObject)
     })
       .then(response => console.log(response.json()))
-      .catch(err => console.error(err.message));
+      .catch(error => console.error("booking error"));
+  }
+
+  // TBT
+  deleteBooking(id) {
+    let deleteBookingObject = {
+      id: Number(id)
+    };
+    let url =
+      "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
+    return fetch(url, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(deleteBookingObject)
+    }).catch(error => console.error("delete error"));
   }
 }
 

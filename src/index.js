@@ -1,4 +1,4 @@
-//imports //
+// imports //
 import $ from "jquery";
 import "./css/base.scss";
 import Hotel from "./Hotel";
@@ -15,9 +15,12 @@ let hotel;
 let manager;
 let guest;
 let usernameID;
-let today = "2020/02/04";
+let today = new Date()
+  .toISOString()
+  .slice(0, 10)
+  .split("-")
+  .join("/");
 
-// fetch data //
 let getGuests = fetch(
   "https://fe-apps.herokuapp.com/api/v1/overlook/1904/users/users"
 )
@@ -49,6 +52,7 @@ Promise.all([getGuests, getRooms, getBookings])
   .catch(error => console.error("promise error"));
 
 // event listeners //
+// login
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
@@ -70,15 +74,18 @@ $("#login-form-submit").on("click", e => {
   }
 });
 
-$(".logout").on("click", e => {
+// logout
+$(".logout-btn").on("click", e => {
   domUpdates.logout();
   location.reload();
 });
 
+// display new booking page
 $(".new-booking-btn").on("click", e => {
   domUpdates.displayBookingPage();
 });
 
+// display available rooms by date
 $(".date-submit").on("click", e => {
   let date = $("#select-date")
     .val()
@@ -90,21 +97,22 @@ $(".date-submit").on("click", e => {
     bookingData
   );
   if (availableRooms.length === 0) {
-    domUpdates.displayNoRoomsAvailable();
+    domUpdates.displayNoRoomsMessage();
   } else {
+    $(".available-rooms").html("");
     return availableRooms.map(room => {
       $(".available-rooms").append(
         `<li>Room Number: ${room.number}<br>
           Room Type: ${room.roomType}<br>
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
-          Cost Per Night: ${room.costPerNight}</li>
-          <button type="button" class="book-room-btn">Book Room</button>`
+          Cost Per Night: $${room.costPerNight}</li>`
       );
     });
   }
 });
 
+// display filtered rooms by type
 $(".filter-submit").on("click", e => {
   let type = $("#room-filter").val();
   let filteredRooms = hotel.filterRoomsByType(type);
@@ -118,13 +126,13 @@ $(".filter-submit").on("click", e => {
           Room Type: ${room.roomType}<br>
           Bed Size: ${room.bedSize}<br>
           Number of Beds: ${room.numBeds}<br>
-          Cost Per Night: ${room.costPerNight}</li>
-          <button type="button" class="book-room-btn">Book Room</button>`
+          Cost Per Night: $${room.costPerNight}</li>`
       );
     });
   }
 });
 
+// book a room
 $(".book-room-submit").on("click", e => {
   let userID = $("#ID-input").val();
   let date = $("#date-input")
@@ -134,6 +142,54 @@ $(".book-room-submit").on("click", e => {
   let roomNumber = $("#room-input").val();
   hotel.bookRoom(userID, date, roomNumber);
   domUpdates.displayConfirmationMessage();
+});
+
+// search guests by name
+$("#search-btn").on("click", e => {
+  let guestName = $("#site-search").val();
+  let guestInfo = manager.searchGuest(
+    guestName,
+    guestData,
+    bookingData,
+    roomData
+  );
+  domUpdates.displaySearchedGuestInfo();
+  $(".guest-spending").html(`Total Spending: $${guestInfo.spending}`);
+  $(".guest-bookings").html("");
+  return guestInfo.bookings
+    .sort(function(a, b) {
+      if (a.date > b.date) return 1;
+      if (a.date < b.date) return -1;
+      return 0;
+    })
+    .map(booking => {
+      $(".guest-bookings").append(`<li>Booking ID: ${booking.id}<br>
+      Date: ${booking.date}<br>
+      Room Number: ${booking.roomNumber}</li>`);
+    });
+});
+
+// delete booking
+$(".delete-booking").on("click", e => {
+  let id = $("#bookingID-input").val();
+  hotel.deleteBooking(id);
+  domUpdates.displayDeleteSuccessMsg();
+});
+
+// close searched guest info
+$(".close-guest-info").on("click", e => {
+  domUpdates.hideGuestInfo();
+});
+
+// back to main
+$(".back-to-main").on("click", e => {
+  if ($(".manager-name").text() === "Lauren") {
+    domUpdates.displayManagerDashSections();
+    domUpdates.hideBookingPage();
+  } else {
+    domUpdates.displayGuestDashSections();
+    domUpdates.hideBookingPage();
+  }
 });
 
 // functions //
@@ -190,7 +246,7 @@ const displayRoomsAvailableToday = () => {
       Room Type: ${room.roomType}</br>
       Bed Size: ${room.bedSize}</br>
       Number of Beds: ${room.numBeds}</br>
-      Cost Per Night: ${room.costPerNight}</li>`
+      Cost Per Night: $${room.costPerNight}</li>`
     );
   });
 };
@@ -202,7 +258,7 @@ const displayPercentOccupiedToday = () => {
 };
 
 const displayTodaysRevenue = () => {
-  $(".revenue").text(
+  $(".revenue").append(
     manager.calculateTodaysRevenue(bookingData, roomData, today)
   );
 };

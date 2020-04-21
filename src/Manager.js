@@ -21,67 +21,33 @@ class Manager {
     return Number(revenue.toFixed(2));
   }
 
-  searchGuest(guestName, guestData, bookingData, roomData) {
-    let guest = guestData.find(guest => guestName == guest.name);
-    let guestBookings = bookingData.filter(
-      booking => booking.userID === guest.id
-    );
-    let amountSpent = guestBookings.reduce((total, booking) => {
-      roomData.forEach(room => {
-        if (booking.roomNumber == room.number) {
-          total += room.costPerNight;
-        }
-      });
-      return total;
-    }, 0);
-    let guestInfo = {
-      bookings: guestBookings,
-      spending: amountSpent
-    };
-    return guestInfo;
-  }
-
   calculatePercentOccupiedToday(bookingData, roomData, todaysDate) {
     let numberOfBookingsToday = bookingData.filter(
       booking => booking.date === todaysDate
     ).length;
     let percentageOfRoomsOccupiedToday =
       (numberOfBookingsToday / roomData.length) * 100;
-    return percentageOfRoomsOccupiedToday;
+    return Number(percentageOfRoomsOccupiedToday.toFixed(2));
   }
 
-  // TBT
-  bookRoom(userID, date, roomNumber) {
-    let bookingObject = {
-      userID: Number(userID),
-      date: date,
-      roomNumber: Number(roomNumber)
+  searchGuest(guestName, guestData, bookingData, roomData) {
+    let guest = guestData.find(guest => guestName === guest.name);
+    let guestBookings = bookingData.filter(
+      booking => booking.userID === guest.id
+    );
+    let amountSpent = guestBookings.reduce((total, booking) => {
+      roomData.forEach(room => {
+        if (booking.roomNumber === room.number) {
+          total += room.costPerNight;
+        }
+      });
+      return Number(total.toFixed(2));
+    }, 0);
+    let guestInfo = {
+      bookings: guestBookings,
+      spending: amountSpent
     };
-    let url =
-      "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
-    return fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(bookingObject)
-    })
-      .then(response => console.log(response.json()))
-      .catch(err => console.error(err.message));
-  }
-
-  // TBT
-  deleteBooking(id) {
-    let deleteBookingObject = {
-      id: Number(id)
-    };
-    let url =
-      "https://fe-apps.herokuapp.com/api/v1/overlook/1904/bookings/bookings";
-    return fetch(url, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(deleteBookingObject)
-    }).catch(error => console.log(err.message));
+    return guestInfo;
   }
 }
 
