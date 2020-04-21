@@ -177,10 +177,8 @@ $(".date-submit").on("click", e => {
 
 $(".filter-submit").on("click", e => {
   let type = $("#room-filter").val();
-  console.log(type);
   let filteredRooms = hotel.filterRoomsByType(type);
-  console.log(filteredRooms);
-  $(".available-rooms").html("")
+  $(".available-rooms").html("");
   return filteredRooms.map(room => {
     $(".available-rooms").append(
       `<li>Room Number: ${room.number}</br>
@@ -191,6 +189,13 @@ $(".filter-submit").on("click", e => {
           <button type="button" class="book-room-btn">Book Room</button>`
     );
   });
+});
+
+$(".book-room-submit").on("click", e => {
+  let userID = $("#ID-input").val();
+  let date = $("#date-input").val().split("-").join("/");
+  let roomNumber = $("#room-input").val();
+  manager.bookRoom(userID, date, roomNumber);
 });
 
 // filter rooms by room type with hotel.filterRoomsByType(type)
