@@ -48,6 +48,7 @@ Promise.all([getGuests, getRooms, getBookings])
   .catch(error => console.error("promise error"));
 
 // event listeners //
+// login
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
   let username = $("#username-field").val();
@@ -69,19 +70,21 @@ $("#login-form-submit").on("click", e => {
   }
 });
 
+// logout
 $(".logout-btn").on("click", e => {
   domUpdates.logout();
   location.reload();
 });
 
+// display new booking page
 $(".new-booking-btn").on("click", e => {
   domUpdates.displayBookingPage();
   domUpdates.hideMainButtons();
-  // domUpdates.showBackButton();
 });
 
+// return to main dashboard
 // $(".back-btn").on("click", e => {
-//   if ($(".manager-name").text("Lauren")) {
+//   if ($(".manager-name").text() === "Lauren") {
 //     domUpdates.displayManagerDashSections();
 //     domUpdates.hideBackButton();
 //   } else {
@@ -90,6 +93,7 @@ $(".new-booking-btn").on("click", e => {
 //   }
 // });
 
+// display available rooms by date
 $(".date-submit").on("click", e => {
   let date = $("#select-date")
     .val()
@@ -103,6 +107,7 @@ $(".date-submit").on("click", e => {
   if (availableRooms.length === 0) {
     domUpdates.displayNoRoomsAvailable();
   } else {
+    $(".available-rooms").html("");
     return availableRooms.map(room => {
       $(".available-rooms").append(
         `<li>Room Number: ${room.number}<br>
@@ -115,6 +120,7 @@ $(".date-submit").on("click", e => {
   }
 });
 
+// display filtered rooms by type
 $(".filter-submit").on("click", e => {
   let type = $("#room-filter").val();
   let filteredRooms = hotel.filterRoomsByType(type);
@@ -134,6 +140,7 @@ $(".filter-submit").on("click", e => {
   }
 });
 
+// book a room
 $(".book-room-submit").on("click", e => {
   let userID = $("#ID-input").val();
   let date = $("#date-input")
@@ -145,6 +152,7 @@ $(".book-room-submit").on("click", e => {
   domUpdates.displayConfirmationMessage();
 });
 
+// search guests by name
 $("#search-btn").on("click", e => {
   let guestName = $("#site-search").val();
   let guestInfo = manager.searchGuest(
@@ -155,6 +163,7 @@ $("#search-btn").on("click", e => {
   );
   domUpdates.displaySearchedGuestInfo();
   $(".guest-spending").html(`Total Spending: ${guestInfo.spending}`);
+  $(".guest-bookings").html("");
   return guestInfo.bookings
     .sort(function(a, b) {
       if (a.date > b.date) return 1;

@@ -1,6 +1,3 @@
-// select a room for booking
-// select a date to book a room
-
 class Guest {
   constructor(guestData, bookingData) {
     this.id = guestData.id;

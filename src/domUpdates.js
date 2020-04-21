@@ -27,13 +27,13 @@ let domUpdates = {
     $(".guest-dashboard-sections").addClass("hide");
   },
 
-  // displayManagerDashSections() {
-  //   $(".manager-dashboard-sections").removeClass("hide");
-  // },
-  //
-  // displayGuestDashSections() {
-  //   $(".guest-dashboard-sections").removeClass("hide");
-  // },
+  displayManagerDashSections() {
+    $(".manager-dashboard-sections").removeClass("hide");
+  },
+
+  displayGuestDashSections() {
+    $(".guest-dashboard-sections").removeClass("hide");
+  },
 
   displayConfirmationMessage() {
     $(".confirmation").text(`Thank you for booking a room!`);
