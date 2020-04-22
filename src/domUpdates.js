@@ -43,6 +43,10 @@ let domUpdates = {
     $(".confirmation").text(`Thank you for booking a room!`);
   },
 
+  hideConfirmationMessage() {
+    $(".confirmation").text(``);
+  },
+
   displayNoRoomsMessage() {
     $(".available-rooms").append(
       `<p>Sorry, there are no rooms of this type available on this day. Please search another type or day.</p>`
@@ -56,6 +60,10 @@ let domUpdates = {
 
   displayDeleteSuccessMsg() {
     $(".success").text(`You have deleted this booking.`);
+  },
+
+  hideDeleteSuccessMsg() {
+    $(".success").text(``);
   },
 
   hideGuestInfo() {
