@@ -6,10 +6,10 @@ For this project, I built a hotel management tool where hotel guests and managem
 
 ## Install/Setup
 1. Clone this repo
-2. Run npm install to get dependencies
-3. Run npm start to start the webserver
+2. Run npm install to get dependencies and run npm start to access the webserver
 4. Open localhost:8080 in your favorite browser
-5. Log in as a User - username: customer[1 - 50] (e.g. customer17) , password: overlook2020 -OR- log in as a Manager - username: manager, password: overlook2020
+5. Log in as a User - username: customer[1 - 50] (e.g. customer17) , password: overlook2020 -OR-
+log in as a Manager - username: manager, password: overlook2020
 
 ## Demo
 ### Manager Experience
