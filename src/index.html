@@ -38,7 +38,12 @@
           required
         />
         <p id="login-error-msg">Invalid username and/or password</p>
-        <input type="submit" value="Login" id="login-form-submit" aria-label="Login" />
+        <input
+          type="submit"
+          value="Login"
+          id="login-form-submit"
+          aria-label="Login"
+        />
       </form>
     </section>
 
@@ -70,7 +75,9 @@
             method="POST"
             class="booking-form"
           >
-            <label for="bookingID-input">Enter Booking ID to Delete Booking:</label>
+            <label for="bookingID-input"
+              >Enter Booking ID to Delete Booking:</label
+            >
             <input
               type="text"
               name="guestID"
@@ -102,9 +109,9 @@
         </div>
 
         <div class="nav-btns">
-        <button type="button" class="new-booking-btn">New Booking</button>
-        <button type="button" class="logout-btn">Logout</button>
-      </div>
+          <button type="button" class="new-booking-btn">New Booking</button>
+          <button type="button" class="logout-btn">Logout</button>
+        </div>
       </section>
     </section>
 
@@ -126,8 +133,10 @@
           <h3>My Bookings</h3>
           <ul class="my-bookings"></ul>
         </div>
-        <button type="button" class="new-booking-btn">New Booking</button>
-        <button type="button" class="logout-btn">Logout</button>
+        <div class="nav-btns">
+          <button type="button" class="new-booking-btn">New Booking</button>
+          <button type="button" class="logout-btn">Logout</button>
+        </div>
       </section>
     </section>
 

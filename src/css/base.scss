@@ -84,11 +84,11 @@ option {
   @include border;
   border-bottom: 0.1em solid $dark;
   color: $dark;
+  font-family: "Muli", sans-serif;
   margin: 0.5em;
   outline: none;
   padding: 1em;
   width: fit-content;
-  font-family: "Muli", sans-serif;
   &::placeholder {
     color: $orange;
   }

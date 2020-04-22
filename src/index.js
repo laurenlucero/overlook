@@ -1,4 +1,5 @@
 // imports //
+
 import $ from "jquery";
 import "./css/base.scss";
 import Hotel from "./Hotel";
@@ -8,6 +9,7 @@ import domUpdates from "./domUpdates";
 import "./images/background.png";
 
 // global variables //
+
 let guestData;
 let roomData;
 let bookingData;
@@ -52,6 +54,7 @@ Promise.all([getGuests, getRooms, getBookings])
   .catch(error => console.error("promise error"));
 
 // event listeners //
+
 // login
 $("#login-form-submit").on("click", e => {
   e.preventDefault();
@@ -196,6 +199,7 @@ $(".back-to-main").on("click", e => {
 });
 
 // functions //
+
 const instantiateManager = () => {
   manager = new Manager(1, "Lauren");
   $(".manager-name").text(`${manager.name}`);
