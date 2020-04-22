@@ -10,9 +10,10 @@ log in as a Manager - username: manager, password: overlook2020
 
 ## Demo
 ### Manager Experience
-![manager](https://media.giphy.com/media/QX0h6aEEbLn8CLJ2fd/giphy.gif)
+![manage](https://media.giphy.com/media/QuV9uBZzx6s90U3YMK/giphy.gif)
+
 ### Guest Experience
-![guest](https://media.giphy.com/media/QuV9uBZzx6s90U3YMK/giphy.gif)
+![guest](https://media.giphy.com/media/QX0h6aEEbLn8CLJ2fd/giphy.gif)
 
 ## Goals & Objectives
 - Use OOP to drive the design of the application and the code
