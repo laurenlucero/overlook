@@ -179,6 +179,7 @@ $(".delete-booking").on("click", e => {
 // close searched guest info
 $(".close-guest-info").on("click", e => {
   domUpdates.hideGuestInfo();
+  domUpdates.hideDeleteSuccessMsg();
 });
 
 // back to main
@@ -186,9 +187,11 @@ $(".back-to-main").on("click", e => {
   if ($(".manager-name").text() === "Lauren") {
     domUpdates.displayManagerDashSections();
     domUpdates.hideBookingPage();
+    domUpdates.hideConfirmationMessage();
   } else {
     domUpdates.displayGuestDashSections();
     domUpdates.hideBookingPage();
+    domUpdates.hideConfirmationMessage();
   }
 });
 
