@@ -1,8 +1,5 @@
-# Overlook
-One week solo project for module 2 of 4 in Front End Engineering program at Turing School of Software Development & Design
-
 ## Background & Description
-For this project, I built a hotel management tool where hotel guests and management can log in to manage room bookings and spending/revenue.
+Overlook was a one week solo project for module 2 of 4 in the Front End Engineering program at Turing School of Software Development & Design. For this project, I built a hotel management tool where hotel guests and management can log in to manage room bookings as well as spending/revenue.
 
 ## Install/Setup
 1. Clone this repo
